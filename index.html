@@ -34,6 +34,7 @@
 <link href="assets/css/v5.css" rel="stylesheet"/>
 <link href="assets/css/infographics.css" rel="stylesheet"/>
 <link href="assets/css/calc-compact.css" rel="stylesheet"/>
+<link href="assets/css/v6.css" rel="stylesheet"/>
 <!-- Яндекс Метрика, Varioqub и UIS в этой версии НЕ подключены: это превью для проверки. -->
 </head>
 <body id="top-of-page">
@@ -903,7 +904,7 @@
 <div class="field" data-f="proc"><label for="prProc">Номер процедуры <span style="font-weight:500;color:var(--ink-2)">(необязательно)</span></label><input class="input" id="prProc" name="procedure" type="text"/></div>
 </div>
 <div class="field" data-f="consent">
-<label class="check"><input id="prConsent" name="consent" type="checkbox"/><span>Согласен на обработку персональных данных и ознакомлен с <a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
+<label class="check"><input id="prConsent" name="consent" type="checkbox" checked=""/><span>Согласен на обработку персональных данных и ознакомлен с <a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
 <p class="err" hidden="" id="prConsent-e" role="alert"></p>
 </div>
 <div aria-hidden="true" class="hp"><label>Сайт<input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div>
@@ -912,23 +913,7 @@
 <p class="pdfbox__ok" hidden="" id="prOk" role="status"></p>
 </form>
 </div>
-<details class="req rv" id="requisites">
-<summary><span><b>Реквизиты ООО «ЦРВУ»</b><span class="req__sub">Карточка организации для договора и&nbsp;закупочной процедуры</span></span><svg aria-hidden="true" class="ico"><use href="#i-plus"></use></svg></summary>
-<dl class="req__list">
-<div><dt>Полное наименование</dt><dd>Общество с&nbsp;ограниченной ответственностью «ЦЕНТР РЕКЛАМНО-ВЫСТАВОЧНЫХ УСЛУГ»</dd></div>
-<div><dt>Сокращённое наименование</dt><dd>ООО «ЦРВУ»</dd></div>
-<div><dt>ИНН / КПП</dt><dd class="mono">7714472410 / 771401001</dd></div>
-<div><dt>ОГРН</dt><dd class="mono">1217700252230</dd></div>
-<div><dt>Юридический адрес</dt><dd>123007, г.&nbsp;Москва, 2-й Хорошёвский проезд, дом&nbsp;7, корпус&nbsp;1, офис ЭТАЖ/ПОМЕЩ.&nbsp;4/I КОМ.&nbsp;47</dd></div>
-<div><dt>Расчётный счёт</dt><dd class="mono">40702810902570003504</dd></div>
-<div><dt>Банк</dt><dd>АО «АЛЬФА-БАНК»</dd></div>
-<div><dt>Корр. счёт</dt><dd class="mono">30101810200000000593</dd></div>
-<div><dt>БИК</dt><dd class="mono">044525593</dd></div>
-</dl>
-<button class="btn btn--soft" data-copy-req="" type="button">Скопировать реквизиты</button>
-<p class="req__ok" hidden="" role="status">Реквизиты скопированы</p>
-</details>
-<p class="legal-note">Оператор персональных данных: ООО «ЦРВУ», ИНН&nbsp;7714472410, согласно <a href="https://crvu.ru/policy" rel="noopener" target="_blank">действующей политике</a>.</p></div>
+</div>
 </section>
 <!-- ============ FAQ ============ -->
 <section aria-labelledby="faq-title" class="sec sec--soft" id="faq">
@@ -992,7 +977,7 @@
 <h2 class="sec__title" id="quiz-title">Расскажите о&nbsp;вашей выставке</h2>
 <p class="sec__lead">Оставьте телефон — перезвоним и&nbsp;уточним задачу. Или заполните заявку с&nbsp;планом площадки: параметры из&nbsp;калькулятора подставятся сами.</p>
 </header>
-<form class="quick-form" id="quickForm" novalidate=""><div><h3>Начнём с&nbsp;разговора</h3><p>Имя и&nbsp;телефон — достаточно для первого контакта.</p></div><div class="field"><label for="quickName">Имя</label><input aria-describedby="quickName-e" autocomplete="given-name" class="input" id="quickName" maxlength="100"/><p class="err" hidden="" id="quickName-e" role="alert"></p></div><div class="field"><label for="quickPhone">Телефон</label><input aria-describedby="quickPhone-e" autocomplete="tel" class="input" id="quickPhone" inputmode="tel" maxlength="22" placeholder="+7 916 123-45-67" type="tel"/><p class="err" hidden="" id="quickPhone-e" role="alert"></p></div><div class="field quick-consent"><label class="check"><input id="quickConsent" type="checkbox"/><span>Согласен на&nbsp;обработку данных по&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политике</a>.</span></label><p class="err" hidden="" id="quickConsent-e" role="alert"></p></div><button class="btn btn--accent" type="submit">Жду звонка <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button><p class="quick-status" hidden="" id="quickStatus" role="status"></p></form>
+<form class="quick-form" id="quickForm" novalidate=""><div><h3>Начнём с&nbsp;разговора</h3><p>Имя и&nbsp;телефон — достаточно для первого контакта.</p></div><div class="field"><label for="quickName">Имя</label><input aria-describedby="quickName-e" autocomplete="given-name" class="input" id="quickName" maxlength="100"/><p class="err" hidden="" id="quickName-e" role="alert"></p></div><div class="field"><label for="quickPhone">Телефон</label><input aria-describedby="quickPhone-e" autocomplete="tel" class="input" id="quickPhone" inputmode="tel" maxlength="22" placeholder="+7 916 123-45-67" type="tel"/><p class="err" hidden="" id="quickPhone-e" role="alert"></p></div><div class="field quick-consent"><label class="check"><input id="quickConsent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку данных по&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политике</a>.</span></label><p class="err" hidden="" id="quickConsent-e" role="alert"></p></div><button class="btn btn--accent" type="submit">Жду звонка <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button><p class="quick-status" hidden="" id="quickStatus" role="status"></p></form>
 <p class="preview-form-note">Предпросмотр: формы проверяют данные, но&nbsp;не&nbsp;отправляют заявки в&nbsp;ЦРВУ.</p>
 <details class="advanced-quiz" id="advancedQuiz"><summary>Заполнить заявку с&nbsp;планом площадки <svg aria-hidden="true" class="ico"><use href="#i-plus"></use></svg></summary><div class="quiz">
 <div class="quiz__card rv">
@@ -1111,7 +1096,7 @@
 </div>
 </div>
 <div class="field" data-f="consent">
-<label class="check"><input aria-describedby="qConsent-e" id="qConsent" name="consent" type="checkbox"/><span>Согласен на&nbsp;обработку персональных данных и&nbsp;ознакомлен с&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
+<label class="check"><input aria-describedby="qConsent-e" id="qConsent" name="consent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку персональных данных и&nbsp;ознакомлен с&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
 <p class="err" hidden="" id="qConsent-e" role="alert"></p>
 </div>
 <div aria-hidden="true" class="hp"><label>Сайт<input autocomplete="off" id="qHp" name="website" tabindex="-1" type="text"/></label></div>
@@ -1171,8 +1156,7 @@
 <img alt="ЦРВУ" class="ftr__logo" height="44" loading="lazy" src="assets/logos/crvu-logo-header.webp" width="205"/>
 <p class="ftr__line">ООО «Центр рекламно-выставочных услуг». Выставочные стенды в&nbsp;Москве и&nbsp;регионах.</p>
 <p class="ftr__line">123007, Москва, 2-й Хорошёвский проезд, д. 7, корп. 1</p>
-<p class="ftr__line ftr__req">ООО «ЦРВУ» · ИНН&nbsp;7714472410 · КПП&nbsp;771401001 · ОГРН&nbsp;1217700252230</p>
-<p class="ftr__line"><a href="#requisites" data-open-req="">Все реквизиты</a></p></div>
+</div>
 <nav aria-label="Разделы страницы" class="ftr__nav">
 <a href="#cases">Проекты</a>
 <a href="#calculator">Стоимость</a>
@@ -1186,8 +1170,29 @@
 <a href="https://crvu.ru/policy" rel="noopener" target="_blank">Политика обработки персональных данных</a>
 </div>
 </div>
+<div class="ftr__reqwrap">
+<details class="req" id="requisites">
+<summary><span><b>Реквизиты ООО «ЦРВУ»</b><span class="req__sub">ИНН&nbsp;7714472410 · КПП&nbsp;771401001 · ОГРН&nbsp;1217700252230</span></span><svg aria-hidden="true" class="ico"><use href="#i-plus"></use></svg></summary>
+<dl class="req__list">
+<div><dt>Полное наименование</dt><dd>Общество с&nbsp;ограниченной ответственностью «ЦЕНТР РЕКЛАМНО-ВЫСТАВОЧНЫХ УСЛУГ»</dd></div>
+<div><dt>Сокращённое наименование</dt><dd>ООО «ЦРВУ»</dd></div>
+<div><dt>ИНН / КПП</dt><dd class="mono">7714472410 / 771401001</dd></div>
+<div><dt>ОГРН</dt><dd class="mono">1217700252230</dd></div>
+<div><dt>Юридический адрес</dt><dd>123007, г.&nbsp;Москва, 2-й Хорошёвский проезд, дом&nbsp;7, корпус&nbsp;1, офис ЭТАЖ/ПОМЕЩ.&nbsp;4/I КОМ.&nbsp;47</dd></div>
+<div><dt>Расчётный счёт</dt><dd class="mono">40702810902570003504</dd></div>
+<div><dt>Банк</dt><dd>АО «АЛЬФА-БАНК»</dd></div>
+<div><dt>Корр. счёт</dt><dd class="mono">30101810200000000593</dd></div>
+<div><dt>БИК</dt><dd class="mono">044525593</dd></div>
+</dl>
+<button class="btn btn--soft" data-copy-req="" type="button">Скопировать реквизиты</button>
+<p class="req__ok" hidden="" role="status">Реквизиты скопированы</p>
+</details>
+</div>
 <div class="ftr__bot">
+<div class="ftr__botl">
+<p class="ftr__op">Оператор персональных данных: ООО «ЦРВУ», ИНН&nbsp;7714472410, согласно <a href="https://crvu.ru/policy" rel="noopener" target="_blank">действующей политике</a>.</p>
 <p>Фотографии — реализованные проекты ЦРВУ. Вариант V6-20112026: заявки и аналитика отключены. Изображение на первом экране — визуализация.</p>
+</div>
 <a href="#top">Наверх</a>
 </div>
 </div>

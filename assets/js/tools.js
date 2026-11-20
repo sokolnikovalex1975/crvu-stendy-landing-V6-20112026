@@ -363,8 +363,7 @@
       return '<div class="plan__head"><div><h3 class="plan__name">' + esc(name) + '</h3><p class="plan__meta">' + esc(meta) + '</p></div>' + badgeHtml + '</div>' +
         '<div class="plan__status' + (st.kind === 'hot' || st.kind === 'call' ? ' plan__status--hot' : '') + '" role="status"><p class="mono">Статус на ' + CRVU.fmtDate(today) + '</p><p>' + esc(st.text) + '</p></div>' +
         '<ol class="tl" aria-label="Ключевые даты">' + tl.html + '</ol>' +
-        (notes.length ? '<p class="plan__ass">' + notes.map(esc).join(' ') + '</p>' : '') +
-        '<p class="plan__note">' + esc(note) + '</p>' +
+        '<p class="plan__foot"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>' + esc((notes.length ? notes.join(' ') + ' ' : '') + note) + '</span></p>' +
         '<div class="plan__act"><button class="btn btn--line" type="button" data-plan-ics><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg> Добавить даты в календарь (.ics)</button>' +
         '<button class="btn btn--accent" type="button" data-plan-quote>Запросить смету к этой выставке ' + ARROW + '</button></div>';
     }

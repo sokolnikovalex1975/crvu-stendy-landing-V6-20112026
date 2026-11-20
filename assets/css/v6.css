@@ -1,0 +1,33 @@
+/* ЦРВУ V6-20112026 — реквизиты в подвале и низ календаря выставок (вариант А) */
+
+/* ---------- подвал: реквизиты и оператор персональных данных ---------- */
+.ftr__reqwrap { padding-top: 1.25rem; }
+.ftr__reqwrap .req { margin: 0; background: transparent; border-color: var(--line); }
+.ftr__reqwrap .req > summary { padding: 0.85rem 1.1rem; }
+.ftr__reqwrap .req > summary b { font-size: 0.9375rem; }
+.ftr__reqwrap .req__sub { font-size: 0.8125rem; color: var(--ink-2); }
+.ftr__reqwrap .req__list { background: #fff; }
+.ftr__reqwrap .req .btn { margin: 1rem 1.1rem; }
+.ftr__reqwrap .req__ok { margin: -0.5rem 1.1rem 1rem; font-size: 0.875rem; color: var(--ok); }
+.ftr__botl { display: grid; gap: 0.3rem; }
+.ftr__botl p { margin: 0; }
+.ftr__op { font-size: 0.8125rem; color: var(--ink-2); }
+.ftr .ftr__op a { display: inline; min-height: 0; padding: 0; color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- календарь выставок: сноска и полоса кнопок ---------- */
+.plan__res { --pp: clamp(1.25rem, 2.5vw, 2.25rem); overflow: hidden; }
+.plan__foot { display: flex; gap: 0.5rem; align-items: flex-start; max-width: none; margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--ink-3); }
+.plan__foot .ico { flex: none; width: 16px; height: 16px; margin-top: 0.15rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+#planOut .plan__act {
+  margin: 0.25rem calc(-1 * var(--pp)) calc(-1 * var(--pp));
+  padding: 1rem var(--pp);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  justify-content: space-between;
+  align-items: center;
+}
+#planOut .plan__act:only-child, #planOut .plan__status + .plan__act { margin-top: 0; }
+@media (max-width: 640px) {
+  #planOut .plan__act { flex-direction: column-reverse; gap: 0.5rem; }
+  #planOut .plan__act .btn { width: 100%; font-size: 0.9375rem; padding-inline: 0.75rem; }
+}
