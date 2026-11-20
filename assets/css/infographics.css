@@ -1,0 +1,103 @@
+/* ЦРВУ V5 — инфографика, тематические значки и компактная шапка */
+.vi, .eqi, .ti, .dt, .xi { display: inline-grid; place-items: center; flex: none; }
+.vi .ico, .eqi .ico, .ti .ico, .dt .ico, .xi .ico { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 1. Формула гарантий */
+.eq3__k--ig { gap: 0.6rem; padding: 0.4rem 0.9rem 0.4rem 0.4rem; font-size: 0.875rem; color: var(--ink); }
+.eq3__k--ig > span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.eq3__k--ig i { font-size: 1.125rem; }
+.eqi { width: 34px; height: 34px; border-radius: 10px; background: #fff; border: 1px solid var(--line); color: var(--ink); }
+.eqi .ico { width: 19px; height: 19px; }
+.eqi--ok { background: var(--accent-soft); border-color: var(--accent-soft-2); color: var(--accent-ink); }
+
+/* 2. Схема сроков */
+.gantt { display: grid; gap: 0.55rem; margin-bottom: clamp(1.5rem, 3vw, 2.25rem); padding: clamp(1rem, 2.4vw, 1.5rem); border: 1px solid var(--line); border-radius: var(--r-lg); background: #fff; }
+.gantt__row { display: grid; grid-template-columns: 8.5rem 1fr; align-items: center; gap: 0.75rem; }
+.gantt__l { font-size: 0.875rem; font-weight: 700; color: var(--ink); }
+.gantt__track { position: relative; height: 34px; border-radius: 9px; background: repeating-linear-gradient(90deg, var(--paper) 0 calc(10% - 1px), var(--line) calc(10% - 1px) 10%); }
+.gantt__bar { position: absolute; top: 3px; bottom: 3px; display: flex; align-items: center; padding: 0 0.7rem; border-radius: 7px; font-size: 0.8125rem; font-weight: 700; white-space: nowrap; overflow: hidden; color: #fff; }
+.gantt__bar--a { background: var(--ok); }
+.gantt__bar--b { background: var(--accent); }
+.gantt__bar--c { background: #6b7380; padding: 0 0.45rem; }
+.gantt__bar--d { background: var(--ink); }
+.gantt__note { max-width: none; display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; align-items: center; margin-top: 0.35rem; padding-left: 9.25rem; font-size: 0.8125rem; color: var(--ink-2); }
+.gantt__note span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.gantt__note em { font-style: normal; color: var(--ink-3); margin-left: auto; }
+.gd { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.gd--a { background: var(--ok); } .gd--b { background: var(--accent); } .gd--c { background: #6b7380; } .gd--d { background: var(--ink); }
+.gantt__l small { display: none; }
+@media (max-width: 640px) {
+  .gantt__row { grid-template-columns: 7.2rem 1fr; gap: 0.6rem; }
+  .gantt__l { display: grid; line-height: 1.2; font-size: 0.8125rem; }
+  .gantt__l small { display: block; font-size: 0.75rem; font-weight: 500; color: var(--ink-2); }
+  .gantt__track { height: 26px; }
+  .gantt__bar { font-size: 0; padding: 0; }
+  .gantt__note { padding-left: 0; }
+  .gantt__note em { margin-left: 0; width: 100%; }
+}
+
+
+/* 3. Инженерия — тематические значки */
+.eng3__tasks--ig li { display: flex; gap: 0.65rem; align-items: flex-start; padding-left: 0; }
+.eng3__tasks--ig li::before { content: none; }
+.ti { width: 30px; height: 30px; border-radius: 9px; background: var(--accent-soft); color: var(--accent-ink); margin-top: -0.2rem; }
+.ti .ico { width: 17px; height: 17px; }
+
+/* 5. Калькулятор — уровни и исключения */
+.lvlbars { display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; margin-bottom: 0.2rem; }
+.lvlbars i { width: 7px; border-radius: 2px; background: var(--line); }
+.lvlbars i:nth-child(1) { height: 7px; } .lvlbars i:nth-child(2) { height: 12px; } .lvlbars i:nth-child(3) { height: 18px; }
+.lvlbars i.on { background: var(--accent); }
+.excl--ig li { display: flex; gap: 0.6rem; align-items: flex-start; padding-left: 0; }
+.excl--ig li::before { content: none; }
+.xi { width: 26px; height: 26px; border-radius: 8px; background: var(--paper); border: 1px solid var(--line); color: var(--ink-2); margin-top: -0.1rem; }
+.xi .ico { width: 15px; height: 15px; }
+
+/* 7. Планировщик — пример вместо пустого состояния */
+.plan__empty--ig { place-items: stretch; text-align: left; align-content: start; gap: 0.9rem; }
+.pt__h { font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; color: var(--ink); max-width: none !important; }
+.pt { position: relative; display: grid; gap: 0.85rem; padding-left: 1.6rem; }
+.pt::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+.pt__i { position: relative; display: grid; gap: 0.1rem; }
+.pt__i::before { content: ''; position: absolute; left: -1.6rem; top: 0.3rem; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2px solid var(--ink-3); box-sizing: border-box; }
+.pt__i--ok::before { border-color: var(--ok); background: var(--ok-soft); }
+.pt__i--acc::before { border-color: var(--accent); background: var(--accent); }
+.pt__d { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); }
+.pt__i b { font-size: 0.9375rem; color: var(--ink); }
+.pt__i > span:last-child { font-size: 0.875rem; color: var(--ink-2); }
+.pt__note { font-size: 0.8125rem; color: var(--ink-3); max-width: none !important; }
+
+/* 8. Контроль качества — значки и отметка */
+.qlist--ig li { align-items: center; }
+.qlist__ico--ig { border-radius: 11px; background: var(--accent-soft); color: var(--accent-ink); }
+.qlist__ico--ig .ico { fill: none; stroke: currentColor; stroke-width: 1.8; }
+.qlist--ig li > div { flex: 1 1 auto; }
+.qchip { flex: none; align-self: center; padding: 0.2rem 0.6rem; border-radius: 999px; background: var(--ok-soft); color: var(--ok); font-size: 0.75rem; font-weight: 700; }
+.qlist--ig .qlist__ico--ig { width: 38px; height: 38px; color: var(--accent-ink); }
+.qlist--ig .qlist__ico--ig .ico { width: 20px; height: 20px; stroke: var(--accent-ink); stroke-width: 1.9; opacity: 1; }
+.qlist--ig span.qchip { display: inline-block; margin-top: 0; color: var(--ok); font-size: 0.75rem; }
+.quality-split .qlist--ig li span.qchip { color: var(--ok); }
+.qlist--ig span.qchip { line-height: 1.5; padding: 0.15rem 0.6rem; }
+
+/* 5. Шкала уровня в одной строке с названием */
+.opt--lvl .opt__row { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+.opt--lvl .opt__row .lvlbars { margin-bottom: 0; }
+
+/* Шапка: парящая панель 60 px, кнопка 40 px, равные отступы 10 px */
+:root { --hdr-h: 70px; }
+.hdr { padding-top: 8px; }
+.hdr__in { height: 60px; min-height: 0; padding-inline: 20px 10px; border-radius: 18px; }
+.logo img { height: 32px; }
+.hdr__tel a { padding-block: 0.25rem; }
+.hdr__cta { min-height: 40px; height: 40px; padding-inline: 1.15rem; border-radius: 9px; box-shadow: none; }
+@media (max-width: 760px) {
+  :root { --hdr-h: 70px; }
+  .hdr { padding-top: 6px; }
+  .hdr__in { height: 56px; padding-inline: 14px 8px; border-radius: 16px; margin-inline: 10px; width: auto; }
+  .logo img { height: 30px; }
+  .burger { width: 40px; height: 40px; border-radius: 9px; }
+}
+@media (max-width: 1060px) {
+  .hdr__in { margin-inline: 10px; width: auto; }
+  .burger { width: 40px; height: 40px; border-radius: 9px; }
+}

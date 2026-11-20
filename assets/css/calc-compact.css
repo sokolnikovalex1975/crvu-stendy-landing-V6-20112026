@@ -1,0 +1,137 @@
+/* ЦРВУ V6 — калькулятор на одном экране (компьютер: сетка 2 × 2; телефон: панель с ценой внизу) */
+
+/* ---------- компьютер ---------- */
+@media (min-width: 1040px) {
+  #calculator { padding-block: 1.75rem 2rem; }
+  #calculator .sec__head { margin-bottom: 1rem; align-items: end; }
+  #calculator .sec__head .tag { margin-bottom: 0.25rem; }
+  #calculator .sec__title { font-size: clamp(2rem, 1.4rem + 1.6vw, 2.6rem); }
+  #calculator .sec__lead { font-size: 1rem; }
+
+  .calc3 { grid-template-columns: minmax(0, 2fr) minmax(330px, 1fr); gap: 1rem; }
+  .calc3__form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; padding: 0.65rem; border-radius: 22px; }
+  .calc3__form > .err { grid-column: 1 / -1; }
+  .cstep { gap: 0.55rem; padding: 0.8rem 0.9rem; border-radius: 16px; align-content: start; }
+  .cstep__n { width: 24px; height: 24px; font-size: 0.75rem; }
+  .cstep__t { font-size: 1rem; }
+
+  /* 1. Площадь */
+  .area-row, .area-row { grid-template-columns: 7.5rem minmax(0, 1fr) !important; gap: 0.75rem; }
+  .area-row .input { min-height: 42px; height: 42px; font-size: 1rem; }
+  .qchips { gap: 0.3rem; }
+  .qchip { min-height: 30px; padding: 0.2rem 0.6rem; font-size: 0.8125rem; }
+  #cArea-h { font-size: 0.75rem; line-height: 1.35; }
+
+  /* 2. Тип застройки: 2 × 2, значок слева */
+  .calc3 .types { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; }
+  .opt--type .opt__body { display: grid; grid-template-columns: 40px 1fr; align-items: center; column-gap: 0.6rem; row-gap: 0; padding: 0.45rem 0.65rem; border-radius: 12px; }
+  .opt--type .plan-ico { grid-row: 1 / span 2; width: 40px; height: 28px; margin: 0; }
+  .opt--type .opt__t { font-size: 0.875rem; line-height: 1.2; }
+  .opt--type .opt__sub { font-size: 0.75rem; line-height: 1.25; }
+
+  /* 3. Уровень: строки, описание только у выбранного */
+  .levels3 { grid-template-columns: 1fr !important; gap: 0.35rem; }
+  .opt--lvl .opt__body { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 0.6rem; row-gap: 0.2rem; padding: 0.5rem 0.75rem; border-radius: 12px; }
+  .opt--lvl .opt__row { justify-content: flex-start; gap: 0.5rem; }
+  .opt--lvl .opt__t { font-size: 0.9375rem; }
+  .opt--lvl .opt__rate { justify-self: end; font-size: 0.75rem; }
+  .opt--lvl .opt__sub { display: none; grid-column: 1 / -1; font-size: 0.75rem; line-height: 1.4; }
+  .opt--lvl input:checked + .opt__body .opt__sub { display: block; }
+
+  /* 4. Что добавить */
+  .calc3 .chips { gap: 0.3rem; }
+  .calc3 .chips .opt__body { min-height: 32px; padding: 0.3rem 0.65rem; font-size: 0.8125rem; border-radius: 10px; }
+  .calc3 .chips .opt__t { font-size: 0.8125rem; }
+  .calc3 .cstep__sub { font-size: 0.75rem; margin-top: 0; }
+  .calc3 .sub-fields { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: end; }
+  .calc3 .sub-fields > [hidden] { display: none !important; }
+  .calc3 .sub-fields label, .calc3 .sub-fields .label { font-size: 0.75rem; margin-bottom: 0.25rem; }
+  .calc3 .sub-fields .input-unit--sm { max-width: 10.5rem; }
+  .calc3 .sub-fields .input { min-height: 36px; height: 36px; font-size: 0.9375rem; }
+  .calc3 .sub-fields .input::placeholder { font-size: 0.8125rem; }
+  .calc3 .stepper button { width: 36px; height: 36px; min-height: 36px; }
+
+  /* Результат */
+  .calc3__res { gap: 0.6rem; }
+  .res3__card { gap: 0.6rem; padding: 1.1rem 1.25rem 1.2rem; border-radius: 22px; }
+  .res3__big { font-size: 1.7rem; white-space: nowrap; }
+  .res3__rows div { padding: 0.4rem 0; font-size: 0.875rem; }
+  .res3__note { font-size: 0.75rem; line-height: 1.45; }
+  .res3__act { gap: 0.45rem; }
+  .res3__act .btn { min-height: 44px; }
+  .calc3 .excl { padding: 0.65rem 1rem; }
+}
+
+/* ---------- телефон ---------- */
+@media (max-width: 639px) {
+  #calculator { padding-block: 0.9rem 0.5rem; }
+  #calculator .sec__head { margin-bottom: 0.6rem; }
+  #calculator .sec__head .tag, #calculator .sec__lead { display: none; }
+  #calculator .sec__title { font-size: 1.5rem; }
+
+  .calc3 { gap: 0.5rem; }
+  .calc3__form { gap: 0.45rem; padding: 0; background: none; border: 0; }
+  .cstep { gap: 0.45rem; padding: 0.6rem 0.7rem; border-radius: 14px; }
+  .cstep__n { width: 20px; height: 20px; font-size: 0.6875rem; }
+  .cstep__t { font-size: 0.9375rem; }
+
+  .area-row { grid-template-columns: 6.5rem minmax(0, 1fr) !important; gap: 0.75rem; }
+  .area-row .input { min-height: 40px; height: 40px; font-size: 1rem; }
+  .qchips { flex-wrap: nowrap; overflow-x: auto; gap: 0.3rem; scrollbar-width: none; }
+  .qchip { flex: none; min-height: 30px; padding: 0.2rem 0.6rem; font-size: 0.8125rem; }
+  #cArea-h { display: none; }
+
+  .calc3 .types { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.3rem; }
+  .opt--type .opt__body { align-items: center; text-align: center; padding: 0.4rem 0.2rem; gap: 0.1rem; border-radius: 10px; }
+  .opt--type .plan-ico { width: 34px; height: 22px; margin: 0; }
+  .opt--type .opt__t { font-size: 0.75rem; }
+  .opt--type .opt__sub { display: none; }
+
+  .levels3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0.3rem; }
+  .opt--lvl .opt__body { position: relative; display: grid; gap: 0.25rem; padding: 0.5rem 0.5rem 0.55rem; border-radius: 10px; }
+  .opt--lvl .opt__row { display: block; }
+  .opt--lvl .opt__t { font-size: 0.8125rem; hyphens: none; }
+  .opt--lvl .lvlbars { position: absolute; top: 0.55rem; right: 0.45rem; height: 11px; gap: 2px; }
+  .opt--lvl .lvlbars i { width: 3px; }
+  .opt--lvl .lvlbars i:nth-child(1) { height: 4px; } .opt--lvl .lvlbars i:nth-child(2) { height: 7px; } .opt--lvl .lvlbars i:nth-child(3) { height: 11px; }
+  .opt--lvl .opt__rate { justify-self: start; font-size: 0.65rem; padding: 0.05rem 0.3rem; letter-spacing: -0.01em; white-space: nowrap; }
+  .opt--lvl .opt__sub { display: none; }
+
+  .calc3 .chips { flex-wrap: nowrap; overflow-x: auto; gap: 0.3rem; scrollbar-width: none; }
+  .calc3 .chips .opt { flex: none; }
+  .calc3 .chips .opt__body { min-height: 32px; padding: 0.3rem 0.6rem; font-size: 0.8125rem; border-radius: 10px; white-space: nowrap; }
+  .calc3 .chips:not(.chips--soft) { flex-wrap: wrap; overflow: visible; }
+  .calc3 .chips:not(.chips--soft) .opt__body { padding: 0.3rem 0.55rem; }
+  .calc3 .chips .opt__t { font-size: 0.78rem; }
+  .calc3 .cstep__sub { font-size: 0.75rem; margin-top: 0; }
+  .calc3 .sub-fields { display: flex; flex-wrap: nowrap; gap: 0.75rem; align-items: end; }
+  .calc3 .sub-fields > [hidden] { display: none !important; }
+  .calc3 .sub-fields label, .calc3 .sub-fields .label { display: block; font-size: 0.75rem; line-height: 1.3; margin: 0 0 0.25rem; white-space: nowrap; }
+  .calc3 .sub-fields .input-unit--sm { max-width: 10.5rem; }
+  .calc3 .sub-fields .input::placeholder { font-size: 0.8125rem; }
+  .calc3 .sub-fields .input { min-height: 36px; height: 36px; font-size: 0.9375rem; }
+  .calc3 .stepper { margin-top: 0; }
+  .calc3 .stepper button { width: 36px; height: 36px; min-height: 36px; }
+  .calc3 .stepper output { min-width: 2.25rem; }
+
+  /* результат — компактная панель внизу экрана */
+  .calc3__res { position: sticky; bottom: 0; z-index: 20; gap: 0; margin-inline: calc(-1 * var(--gutter)); }
+  .res3__card { gap: 0.5rem; padding: 0.65rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom)); border-radius: 18px 18px 0 0; box-shadow: 0 -8px 24px rgba(29, 34, 40, 0.12); }
+  .res3__card::before { height: 4px; }
+  #calcOut:not([hidden]), .res3__empty { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 0.6rem; row-gap: 0.1rem; }
+  .res3__empty > p:not(.res3__lab):not(.res3__big) { display: none; }
+  .res3__lab { font-size: 0.6875rem; white-space: nowrap; }
+  .res3__big { font-size: 1.0625rem; letter-spacing: -0.02em; white-space: nowrap; text-align: right; }
+  .res3__big small { margin-top: 0.1rem; font-size: 0.6875rem; font-weight: 500; }
+  .res3__big .res3__plus { font-size: 0.75rem; }
+  .res3__act { display: block; }
+  .res3__act .btn { width: 100%; min-height: 44px; font-size: 0.9375rem; }
+
+  /* детали расчёта — сразу под калькулятором */
+  .calc3__more { display: grid; gap: 0.75rem; margin-top: 0.75rem; padding: 1rem; border-radius: 16px; background: #fff; border: 1px solid var(--line); }
+  .calc3__more .res3__sub { font-size: 0.9375rem; }
+  .calc3__more .btn { width: 100%; }
+  .calc3__more .excl { margin: 0; }
+  body.in-calc .mbar { transform: translateY(120%) !important; }
+}
+@media (min-width: 640px) { .calc3__more { display: none !important; } }
