@@ -69,7 +69,9 @@
   if (!box) { return; }
   d.addEventListener('click', function (e) {
     var a = e.target.closest ? e.target.closest('[data-open-req]') : null;
-    if (a) { box.open = true; }
+    if (!a) { return; }
+    if (a.classList.contains('ftr__all')) { e.preventDefault(); box.open = !box.open; a.setAttribute('aria-expanded', box.open ? 'true' : 'false'); if (box.open) { box.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } return; }
+    box.open = true;
   });
   if (location.hash === '#requisites') { box.open = true; }
   var btn = box.querySelector('[data-copy-req]'), ok = box.querySelector('.req__ok');
@@ -87,5 +89,18 @@
       var t = d.createElement('textarea'); t.value = txt; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
       d.body.appendChild(t); t.select(); try { d.execCommand('copy'); done(); } catch (err) {} d.body.removeChild(t);
     }
+  });
+})(document);
+
+/* V6-20112026: блок «Заявка» на компьютере — кнопка «Заполнить заявку с планом» открывает подробную заявку */
+(function (d) {
+  'use strict';
+  var btn = d.querySelector('[data-open-quiz]'), box = d.getElementById('advancedQuiz');
+  if (!btn || !box) { return; }
+  btn.addEventListener('click', function () {
+    box.open = true;
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var f = box.querySelector('input, select, textarea');
+    if (f) { setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (er) {} }, 400); }
   });
 })(document);

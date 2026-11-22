@@ -977,7 +977,16 @@
 <h2 class="sec__title" id="quiz-title">Расскажите о&nbsp;вашей выставке</h2>
 <p class="sec__lead">Оставьте телефон — перезвоним и&nbsp;уточним задачу. Или заполните заявку с&nbsp;планом площадки: параметры из&nbsp;калькулятора подставятся сами.</p>
 </header>
-<form class="quick-form" id="quickForm" novalidate=""><div><h3>Начнём с&nbsp;разговора</h3><p>Имя и&nbsp;телефон — достаточно для первого контакта.</p></div><div class="field"><label for="quickName">Имя</label><input aria-describedby="quickName-e" autocomplete="given-name" class="input" id="quickName" maxlength="100"/><p class="err" hidden="" id="quickName-e" role="alert"></p></div><div class="field"><label for="quickPhone">Телефон</label><input aria-describedby="quickPhone-e" autocomplete="tel" class="input" id="quickPhone" inputmode="tel" maxlength="22" placeholder="+7 916 123-45-67" type="tel"/><p class="err" hidden="" id="quickPhone-e" role="alert"></p></div><div class="field quick-consent"><label class="check"><input id="quickConsent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку данных по&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политике</a>.</span></label><p class="err" hidden="" id="quickConsent-e" role="alert"></p></div><button class="btn btn--accent" type="submit">Жду звонка <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button><p class="quick-status" hidden="" id="quickStatus" role="status"></p></form>
+<div class="qpaths">
+<form class="quick-form" id="quickForm" novalidate=""><div><h3>Начнём с&nbsp;разговора</h3><p>Имя и&nbsp;телефон — достаточно для первого контакта.</p></div><div class="field"><label for="quickName">Имя</label><input aria-describedby="quickName-e" autocomplete="given-name" class="input" id="quickName" maxlength="100"/><p class="err" hidden="" id="quickName-e" role="alert"></p></div><div class="field"><label for="quickPhone">Телефон</label><input aria-describedby="quickPhone-e" autocomplete="tel" class="input" id="quickPhone" inputmode="tel" maxlength="22" placeholder="+7 916 123-45-67" type="tel"/><p class="err" hidden="" id="quickPhone-e" role="alert"></p></div><div class="field quick-consent"><label class="check"><input id="quickConsent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку данных по&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политике</a>.</span></label><p class="err" hidden="" id="quickConsent-e" role="alert"></p></div><button class="btn btn--accent" type="submit">Жду звонка <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button><p class="quick-status" hidden="" id="quickStatus" role="status"></p><div class="qmr"><span>или напишите в&nbsp;мессенджер</span><a class="qmr__b" data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/telegram.svg" width="22"/>Telegram</a><a class="qmr__b" data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/max.svg" width="22"/>MAX</a></div></form>
+<div class="qplan">
+<p class="qplan__tag">3 шага</p>
+<h3>Подробная заявка с&nbsp;планом площадки</h3>
+<p class="qplan__p">Параметры из&nbsp;калькулятора подставятся сами — останется приложить план и&nbsp;оставить контакты.</p>
+<ul class="qplan__l"><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>План площадки или размеры</li><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>Название выставки и&nbsp;даты</li><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>Состав экспозиции и&nbsp;бюджетный ориентир</li></ul>
+<button class="btn btn--accent qplan__btn" data-open-quiz="" type="button">Заполнить заявку с&nbsp;планом <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
+</div>
+</div>
 <p class="preview-form-note">Предпросмотр: формы проверяют данные, но&nbsp;не&nbsp;отправляют заявки в&nbsp;ЦРВУ.</p>
 <details class="advanced-quiz" id="advancedQuiz"><summary>Заполнить заявку с&nbsp;планом площадки <svg aria-hidden="true" class="ico"><use href="#i-plus"></use></svg></summary><div class="quiz">
 <div class="quiz__card rv">
@@ -1154,20 +1163,32 @@
 <div class="ftr__top">
 <div class="ftr__brand">
 <img alt="ЦРВУ" class="ftr__logo" height="44" loading="lazy" src="assets/logos/crvu-logo-header.webp" width="205"/>
-<p class="ftr__line">ООО «Центр рекламно-выставочных услуг». Выставочные стенды в&nbsp;Москве и&nbsp;регионах.</p>
-<p class="ftr__line">123007, Москва, 2-й Хорошёвский проезд, д. 7, корп. 1</p>
+<p class="ftr__line ftr__desc">Выставочные стенды под&nbsp;ключ в&nbsp;Москве и&nbsp;регионах.</p>
+<p class="ftr__line ftr__addr">123007, Москва, 2-й Хорошёвский проезд, д. 7, корп. 1</p>
 </div>
-<nav aria-label="Разделы страницы" class="ftr__nav">
+<div class="ftr__col">
+<p class="ftr__h">Разделы</p>
+<nav aria-label="Разделы страницы" class="ftr__nav ftr__nav--grid">
 <a href="#cases">Проекты</a>
 <a href="#calculator">Стоимость</a>
 <a href="#planner">Сроки</a>
 <a href="#process">Этапы</a>
 <a href="#faq">Вопросы</a>
 </nav>
-<div class="ftr__nav">
-<a data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a>
+</div>
+<div class="ftr__col">
+<p class="ftr__h">Контакты</p>
+<div class="ftr__nav ftr__con">
+<a class="ftr__tel" data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a>
 <a href="mailto:manager@crvu.ru">manager@crvu.ru</a>
-<a href="https://crvu.ru/policy" rel="noopener" target="_blank">Политика обработки персональных данных</a>
+<span class="ftr__msg"><a data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/telegram.svg" width="22"/>Telegram</a><a data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/max.svg" width="22"/>MAX</a></span>
+</div>
+</div>
+<div class="ftr__col ftr__rq">
+<p class="ftr__h">Реквизиты</p>
+<p class="ftr__rqn">ООО «ЦРВУ»</p>
+<p class="ftr__rqd"><span>ИНН&nbsp;7714472410 · КПП&nbsp;771401001</span> <span>ОГРН&nbsp;1217700252230</span> <span class="ftr__rqa">123007, Москва, 2-й Хорошёвский проезд, д.&nbsp;7, корп.&nbsp;1</span></p>
+<a aria-controls="requisites" class="ftr__all" data-open-req="" href="#requisites">Все реквизиты <svg aria-hidden="true" class="ico"><use href="#i-down"></use></svg></a>
 </div>
 </div>
 <div class="ftr__reqwrap">

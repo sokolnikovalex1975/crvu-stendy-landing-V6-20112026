@@ -31,3 +31,96 @@
   #planOut .plan__act { flex-direction: column-reverse; gap: 0.5rem; }
   #planOut .plan__act .btn { width: 100%; font-size: 0.9375rem; padding-inline: 0.75rem; }
 }
+
+/* ==========================================================
+   V6-20112026: блок «Заявка» (компьютер — вариант А, телефон — без изменений)
+   ========================================================== */
+.qmr, .qplan { display: none; }
+@media (min-width: 900px) {
+  #quiz .sec__head { margin-bottom: 1.5rem; }
+  .qpaths { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch; }
+  #quiz .quick-form { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto auto 1fr; margin: 0; border-radius: 22px; padding: 1.6rem; gap: 0.9rem 1rem; }
+  #quiz .quick-form h3 { font-size: 1.375rem; }
+  #quiz .quick-form button { justify-self: stretch; min-height: 52px; }
+  #quiz .quick-status { margin: 0; }
+  .qmr { grid-column: 1 / -1; align-self: end; display: grid; grid-template-columns: auto 1fr 1fr; gap: 0.5rem 0.6rem; align-items: center; padding-top: 0.85rem; border-top: 1px solid var(--line); }
+  .qmr span { padding-right: 0.25rem; font-size: 0.875rem; color: var(--ink-2); }
+  .qmr__b { display: flex; align-items: center; justify-content: center; gap: 0.45rem; min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font-weight: 600; font-size: 0.9375rem; color: var(--ink); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .qmr__b:hover { border-color: var(--accent); color: var(--accent-ink); }
+  .qmr__b img { width: 22px; height: 22px; }
+  .qplan { display: grid; gap: 0.85rem; align-content: start; padding: 1.6rem; border-radius: 22px; background: var(--ink); color: #fff; }
+  .qplan__tag { justify-self: start; margin: 0; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgba(255, 255, 255, 0.12); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; }
+  .qplan h3 { margin: 0; font-family: var(--font-display); font-size: 1.375rem; line-height: 1.2; color: #fff; }
+  .qplan__p { margin: 0; max-width: 44ch; font-size: 0.9375rem; color: rgba(255, 255, 255, 0.72); }
+  .qplan__l { display: grid; gap: 0.5rem; margin: 0.1rem 0 0.3rem; padding: 0; list-style: none; }
+  .qplan__l li { display: flex; gap: 0.55rem; align-items: center; font-size: 0.9375rem; color: #fff; }
+  .qplan__l .ico { flex: none; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: rgba(255, 85, 0, 0.2); fill: none; stroke: #ff8a4c; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .qplan__btn { justify-self: stretch; justify-content: center; min-height: 52px; }
+  #quiz .preview-form-note { margin: 0.75rem 0 0; }
+  #advancedQuiz > summary { display: none; }
+  #advancedQuiz[open] { margin-top: 1.5rem; }
+}
+@media (min-width: 900px) and (max-width: 1180px) {
+  .qmr { grid-template-columns: 1fr 1fr; }
+  .qmr span { grid-column: 1 / -1; }
+}
+
+/* ==========================================================
+   V6-20112026: подвал (компьютер — вариант А, телефон — вариант Б)
+   ========================================================== */
+footer.ftr { padding-top: 2.5rem; }
+.ftr .ftr__top { grid-template-columns: 1.25fr 0.9fr 1fr 1fr; gap: 2rem; align-items: start; padding-bottom: 1.75rem; }
+.ftr__brand { gap: 0.6rem; }
+.ftr__brand .ftr__line { margin: 0; max-width: 30ch; font-size: 0.875rem; }
+.ftr__h { margin: 0 0 0.6rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.ftr .ftr__nav a { min-height: 32px; font-size: 0.9375rem; }
+.ftr__nav--grid { grid-template-columns: 1fr 1fr; gap: 0.1rem 1rem; }
+.ftr__msg { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.ftr .ftr__msg a { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 38px; padding: 0 0.85rem 0 0.55rem; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 0.875rem; font-weight: 600; white-space: nowrap; }
+.ftr .ftr__msg a:hover { border-color: var(--accent); }
+.ftr__msg img { display: block; width: 22px; height: 22px; background: none; }
+.ftr__rq p { margin: 0 0 0.2rem; font-size: 0.875rem; color: var(--ink-2); }
+.ftr__rq p.ftr__h { margin: 0 0 0.6rem; font-size: 0.75rem; color: var(--ink-3); }
+.ftr__rqd span { display: block; }
+.ftr__rqa { display: none !important; }
+.ftr__all { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.35rem; font-size: 0.875rem; font-weight: 700; color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+.ftr__all .ico { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+.ftr__all[aria-expanded='true'] .ico { transform: rotate(180deg); }
+/* полная карточка реквизитов: открывается ссылкой «Все реквизиты» */
+.ftr__reqwrap { padding-top: 0; }
+.ftr__reqwrap .req > summary { display: none; }
+.ftr__reqwrap .req { border: 0; }
+.ftr__reqwrap .req[open] { margin: 1.25rem 0 0; border: 1px solid var(--line); }
+.ftr__reqwrap .req[open] .req__list { padding-top: 0.25rem; border-top: 0; border-radius: var(--r-xl, 18px) var(--r-xl, 18px) 0 0; }
+/* нижняя строка */
+.ftr .ftr__bot { padding-top: 1rem; align-items: center; flex-wrap: nowrap; }
+.ftr__botl { display: block; flex: 1; max-width: 62rem; }
+.ftr__botl p { display: inline; font-size: 0.75rem; color: var(--ink-3); }
+.ftr__botl p + p::before { content: ' · '; }
+.ftr .ftr__op { font-size: 0.75rem; color: var(--ink-3); }
+@media (max-width: 1060px) {
+  .ftr .ftr__top { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+}
+@media (max-width: 760px) {
+  footer.ftr { padding-top: 1.75rem; }
+  .ftr .ftr__top { display: grid; grid-template-columns: 1fr; gap: 1rem; padding-bottom: 1.25rem; }
+  .ftr__brand .ftr__line, .ftr__h { display: none; }
+  .ftr__logo { width: 170px; }
+  .ftr__nav--grid { grid-template-columns: 1fr 1fr 1fr; gap: 0.1rem 1rem; }
+  .ftr .ftr__nav a { min-height: 36px; }
+  .ftr__con { display: flex; flex-wrap: wrap; align-items: center; gap: 0.1rem 1.25rem; }
+  .ftr .ftr__con .ftr__tel { font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; }
+  .ftr__msg { flex-basis: 100%; margin-top: 0.25rem; }
+  .ftr__rq { padding-top: 1rem; border-top: 1px solid var(--line); }
+  .ftr__rqn { font-weight: 700; color: var(--ink) !important; }
+  .ftr__rq .ftr__rqd { font-size: 0.8125rem; line-height: 1.55; }
+  .ftr__rqd span, .ftr__rqa { display: inline !important; }
+  .ftr__rqd span + span::before { content: '· '; }
+  .ftr__all { margin-top: 0.6rem; text-decoration: none; font-size: 0.8125rem; }
+  .ftr__all .ico { display: none; }
+  .ftr .ftr__bot { padding-top: 0.75rem; gap: 1rem; align-items: flex-end; }
+  .ftr__botl p { display: block; }
+  .ftr__botl p + p { margin-top: 0.35rem; }
+  .ftr__botl p + p::before { content: none; }
+  .ftr .ftr__top + .ftr__reqwrap .req[open] { margin-top: 0.5rem; }
+}
