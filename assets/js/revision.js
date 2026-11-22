@@ -92,15 +92,3 @@
   });
 })(document);
 
-/* V6-20112026: блок «Заявка» на компьютере — кнопка «Заполнить заявку с планом» открывает подробную заявку */
-(function (d) {
-  'use strict';
-  var btn = d.querySelector('[data-open-quiz]'), box = d.getElementById('advancedQuiz');
-  if (!btn || !box) { return; }
-  btn.addEventListener('click', function () {
-    box.open = true;
-    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    var f = box.querySelector('input, select, textarea');
-    if (f) { setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (er) {} }, 400); }
-  });
-})(document);

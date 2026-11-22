@@ -972,187 +972,85 @@
 <!-- ============ ЗАЯВКА ============ -->
 <section aria-labelledby="quiz-title" class="sec sec--white" id="quiz">
 <div class="container">
-<header class="sec__head sec__head--split">
+<div class="nq">
+<header class="nq__head">
 <p class="tag">Заявка</p>
 <h2 class="sec__title" id="quiz-title">Расскажите о&nbsp;вашей выставке</h2>
-<p class="sec__lead">Оставьте телефон — перезвоним и&nbsp;уточним задачу. Или заполните заявку с&nbsp;планом площадки: параметры из&nbsp;калькулятора подставятся сами.</p>
+<p class="sec__lead">Перезвоним, обсудим задачу и&nbsp;подготовим 3D‑проект со&nbsp;сметой.</p>
 </header>
-<div class="qpaths">
-<form class="quick-form" id="quickForm" novalidate=""><div><h3>Начнём с&nbsp;разговора</h3><p>Имя и&nbsp;телефон — достаточно для первого контакта.</p></div><div class="field"><label for="quickName">Имя</label><input aria-describedby="quickName-e" autocomplete="given-name" class="input" id="quickName" maxlength="100"/><p class="err" hidden="" id="quickName-e" role="alert"></p></div><div class="field"><label for="quickPhone">Телефон</label><input aria-describedby="quickPhone-e" autocomplete="tel" class="input" id="quickPhone" inputmode="tel" maxlength="22" placeholder="+7 916 123-45-67" type="tel"/><p class="err" hidden="" id="quickPhone-e" role="alert"></p></div><div class="field quick-consent"><label class="check"><input id="quickConsent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку данных по&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политике</a>.</span></label><p class="err" hidden="" id="quickConsent-e" role="alert"></p></div><button class="btn btn--accent" type="submit">Жду звонка <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button><p class="quick-status" hidden="" id="quickStatus" role="status"></p><div class="qmr"><span>или напишите в&nbsp;мессенджер</span><a class="qmr__b" data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/telegram.svg" width="22"/>Telegram</a><a class="qmr__b" data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/max.svg" width="22"/>MAX</a></div></form>
-<div class="qplan">
-<p class="qplan__tag">3 шага</p>
-<h3>Подробная заявка с&nbsp;планом площадки</h3>
-<p class="qplan__p">Параметры из&nbsp;калькулятора подставятся сами — останется приложить план и&nbsp;оставить контакты.</p>
-<ul class="qplan__l"><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>План площадки или размеры</li><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>Название выставки и&nbsp;даты</li><li><svg aria-hidden="true" class="ico"><use href="#i-check"></use></svg>Состав экспозиции и&nbsp;бюджетный ориентир</li></ul>
-<button class="btn btn--accent qplan__btn" data-open-quiz="" type="button">Заполнить заявку с&nbsp;планом <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
+<div class="nq__next">
+<p class="nq__h">Что будет дальше</p>
+<ol class="nq__steps">
+<li><span aria-hidden="true">1</span><p><b>Обсудим задачу</b>Выставку, площадь, экспонаты и&nbsp;бюджет</p></li>
+<li><span aria-hidden="true">2</span><p><b>Покажем 3D‑проект и&nbsp;смету</b>Правки вносим до&nbsp;утверждения</p></li>
+<li><span aria-hidden="true">3</span><p><b>Закрепим в&nbsp;договоре</b>Стоимость и&nbsp;состав работ: цена в&nbsp;смете — окончательная</p></li>
+</ol>
 </div>
+<div class="nq__con">
+<p class="nq__h">Удобнее связаться сразу?</p>
+<p class="nq__links">
+<a class="nq__tel" data-goal="click_phone" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg>+7 (495) 106-70-22</a>
+<a class="nq__mail" href="mailto:manager@crvu.ru"><svg aria-hidden="true" class="ico"><use href="#i-mail"></use></svg>manager@crvu.ru</a>
+<a class="nq__msg" data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a>
+<a class="nq__msg" data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max.svg" width="20"/>MAX</a>
+</p>
 </div>
-<p class="preview-form-note">Предпросмотр: формы проверяют данные, но&nbsp;не&nbsp;отправляют заявки в&nbsp;ЦРВУ.</p>
-<details class="advanced-quiz" id="advancedQuiz"><summary>Заполнить заявку с&nbsp;планом площадки <svg aria-hidden="true" class="ico"><use href="#i-plus"></use></svg></summary><div class="quiz">
-<div class="quiz__card rv">
+<div class="nq__box">
 <noscript><p class="quiz__err">Для формы нужен JavaScript. Позвоните +7 (495) 106-70-22 или напишите на manager@crvu.ru.</p></noscript>
-<form id="quizForm" novalidate="">
-<div class="quiz__prog">
-<p aria-live="polite" class="quiz__step" id="qProg">Шаг 1 из 3</p>
-<div aria-hidden="true" class="quiz__bar"><i class="is-cur"></i><i></i><i></i></div>
-</div>
-<!-- шаг 1 -->
-<section aria-labelledby="qs1" class="qstep" data-step="1">
-<h3 class="qstep__t" id="qs1">Выставка и&nbsp;стенд</h3>
+<form class="nq__card" id="quizForm" novalidate="">
+<h3 class="nq__ct">Заявка на&nbsp;расчёт стенда</h3>
+<p class="nq__sub">Обязательны только имя и&nbsp;телефон.</p>
 <div class="calc-sum" hidden="" id="qCalcSum"></div>
-<div class="field">
-<label for="qExpo">Выставка</label>
-<select aria-describedby="qExpo-h" class="select" data-combobox="" data-placeholder="Начните вводить название" id="qExpo" name="expo">
+<p class="nq__ctx" hidden="" id="qCtx"></p>
+<div class="nq__grid">
+<div class="field" data-f="name">
+<label for="qName">Имя</label>
+<input aria-describedby="qName-e" aria-invalid="false" autocomplete="name" class="input" id="qName" maxlength="100" name="name" type="text"/>
+<p class="err" hidden="" id="qName-e" role="alert"></p>
+</div>
+<div class="field" data-f="phone">
+<label for="qPhone">Телефон</label>
+<input aria-describedby="qPhone-e" aria-invalid="false" autocomplete="tel" class="input" id="qPhone" inputmode="tel" maxlength="22" name="phone" placeholder="+7 916 123-45-67" type="tel"/>
+<p class="err" hidden="" id="qPhone-e" role="alert"></p>
+</div>
+<div class="field nq__full" data-f="expo">
+<label for="qExpo">Выставка <span class="opt-note">(необязательно)</span></label>
+<select class="select" data-combobox="" data-placeholder="Начните вводить название" id="qExpo" name="expo">
 <option value="">Выберите выставку</option>
 </select>
-<p class="hint" id="qExpo-h">Нет в&nbsp;списке — выберите «Другая выставка» и&nbsp;укажите дату.</p>
 </div>
-<div class="field" hidden="" id="qDateWrap">
+<div class="field nq__full" hidden="" id="qDateWrap">
 <label for="qDate">Дата открытия</label>
 <input class="input" id="qDate" name="date" type="date"/>
 </div>
-<div class="field">
-<label for="qVenue">Площадка</label>
-<select class="select" id="qVenue" name="venue">
-<option value="">Не выбрана</option>
-<option value="Крокус Экспо">Крокус Экспо</option>
-<option value="Экспоцентр">Экспоцентр</option>
-<option value="ВДНХ">ВДНХ</option>
-<option value="Экспофорум">Экспофорум</option>
-<option value="Тимирязев Центр">Тимирязев Центр</option>
-<option value="Другая площадка">Другая площадка</option>
-</select>
-</div>
-<p class="plan__status" hidden="" id="qExpoHint" role="status"></p>
-<div class="field" data-f="area">
-<label for="qArea">Площадь, м²</label>
-<input aria-describedby="qArea-h qArea-e" aria-invalid="false" class="input" id="qArea" inputmode="decimal" maxlength="6" name="area" placeholder="Например, 40" type="text"/>
-<p class="hint" id="qArea-h">Площадь указана в&nbsp;договоре с&nbsp;организатором.</p>
-<p class="err" hidden="" id="qArea-e" role="alert"></p>
-<label class="check unknown-area"><input id="qAreaUnknown" type="checkbox"/><span>Площадь пока не&nbsp;знаю — уточним по&nbsp;плану</span></label></div>
-<fieldset class="qgroup">
-<legend>Тип стенда <span class="opt-note">(необязательно)</span></legend>
-<div class="types">
-<label class="opt opt--type"><input name="qtype" type="radio" value="linear"/><span class="opt__body"><svg aria-hidden="true" class="plan-ico"><use href="#plan-linear"></use></svg><span class="opt__t">Линейный</span></span></label>
-<label class="opt opt--type"><input name="qtype" type="radio" value="corner"/><span class="opt__body"><svg aria-hidden="true" class="plan-ico"><use href="#plan-corner"></use></svg><span class="opt__t">Угловой</span></span></label>
-<label class="opt opt--type"><input name="qtype" type="radio" value="peninsula"/><span class="opt__body"><svg aria-hidden="true" class="plan-ico"><use href="#plan-peninsula"></use></svg><span class="opt__t">Полуостров</span></span></label>
-<label class="opt opt--type"><input name="qtype" type="radio" value="island"/><span class="opt__body"><svg aria-hidden="true" class="plan-ico"><use href="#plan-island"></use></svg><span class="opt__t">Остров</span></span></label>
-</div>
-</fieldset>
-</section>
-<!-- шаг 2 -->
-<section aria-labelledby="qs2" class="qstep" data-step="2" hidden="">
-<h3 class="qstep__t" id="qs2">План площадки и&nbsp;экспозиция</h3>
-<div class="field" data-f="file">
-<span class="label" id="qFile-l">План площадки</span>
-<label class="drop" for="qFile" id="qDrop">
-<svg aria-hidden="true" class="ico"><use href="#i-upload"></use></svg>
-<span class="drop__t">Загрузить план площадки</span>
-<span class="drop__s">PDF, DWG, JPG или PNG, до&nbsp;25&nbsp;МБ. Перетащите файл сюда или нажмите.</span>
-<input accept=".pdf,.dwg,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="qFile-e" id="qFile" name="plan" type="file"/>
-</label>
+<p class="plan__status nq__full" hidden="" id="qExpoHint" role="status"></p>
+<div class="field nq__full" data-f="file">
+<label class="nq__drop" for="qFile" id="qDrop"><svg aria-hidden="true" class="ico"><use href="#i-upload"></use></svg><span><b>Приложить план площадки</b>PDF, DWG, JPG или PNG до&nbsp;25&nbsp;МБ · можно прислать позже</span><input accept=".pdf,.dwg,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="qFile-e" id="qFile" name="plan" type="file"/></label>
 <div class="fileok" hidden="" id="qFileOk">
 <span class="fileok__n"><b id="qFileName"></b><span id="qFileSize"></span></span>
 <button id="qFileRm" type="button">Убрать</button>
 </div>
 <p class="err" hidden="" id="qFile-e" role="alert"></p>
-<label class="check"><input id="qLater" name="later" type="checkbox"/><span>Пришлю план позже</span></label>
 </div>
-<fieldset class="qgroup">
-<legend>Что покажете</legend>
-<div class="chips">
-<label class="opt"><input name="qshow" type="checkbox" value="Крупное оборудование"/><span class="opt__body"><span class="opt__t">Крупное оборудование</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Образцы продукции"/><span class="opt__body"><span class="opt__t">Образцы продукции</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Экраны и демонстрации"/><span class="opt__body"><span class="opt__t">Экраны и демонстрации</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Переговорная зона"/><span class="opt__body"><span class="opt__t">Переговорная зона</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Ресепшн"/><span class="opt__body"><span class="opt__t">Ресепшн</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Склад"/><span class="opt__body"><span class="opt__t">Склад</span></span></label>
-<label class="opt"><input name="qshow" type="checkbox" value="Лаунж"/><span class="opt__body"><span class="opt__t">Лаунж</span></span></label>
-</div>
-</fieldset>
-<div class="field">
-<label for="qWeight">Вес и габариты тяжёлых экспонатов</label>
-<input aria-describedby="qWeight-h" class="input" id="qWeight" name="weight" type="text"/>
-<p class="hint" id="qWeight-h">Вес нужен, чтобы заранее рассчитать пол и&nbsp;подиум.</p>
-</div>
-<div class="field">
-<label for="qComment">Комментарий</label>
-<textarea class="textarea" id="qComment" name="comment" rows="3"></textarea>
-</div>
-</section>
-<!-- шаг 3 -->
-<section aria-labelledby="qs3" class="qstep" data-step="3" hidden="">
-<h3 class="qstep__t" id="qs3">Контакты</h3>
-<div class="qrow qrow--2">
-<div class="field" data-f="name">
-<label for="qName">Имя</label>
-<input aria-describedby="qName-e" aria-invalid="false" autocomplete="name" class="input" id="qName" name="name" type="text"/>
-<p class="err" hidden="" id="qName-e" role="alert"></p>
-</div>
-<div class="field" data-f="phone">
-<label for="qPhone">Телефон</label>
-<input aria-describedby="qPhone-e" aria-invalid="false" autocomplete="tel" class="input" id="qPhone" inputmode="tel" name="phone" placeholder="+7 (___) ___-__-__" type="tel"/>
-<p class="err" hidden="" id="qPhone-e" role="alert"></p>
-</div>
-<div class="field" data-f="email">
-<label for="qEmail">Email <span class="opt-note">(необязательно)</span></label>
-<input aria-describedby="qEmail-e" aria-invalid="false" autocomplete="email" class="input" id="qEmail" name="email" type="email"/>
-<p class="err" hidden="" id="qEmail-e" role="alert"></p>
-</div>
-<div class="field" data-f="company">
-<label for="qCompany">Компания <span class="opt-note">(необязательно)</span></label>
-<input autocomplete="organization" class="input" id="qCompany" name="company" type="text"/>
-</div>
-</div>
-<div class="field" data-f="consent">
+<div class="field nq__full" data-f="consent">
 <label class="check"><input aria-describedby="qConsent-e" id="qConsent" name="consent" type="checkbox" checked=""/><span>Согласен на&nbsp;обработку персональных данных и&nbsp;ознакомлен с&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
 <p class="err" hidden="" id="qConsent-e" role="alert"></p>
 </div>
 <div aria-hidden="true" class="hp"><label>Сайт<input autocomplete="off" id="qHp" name="website" tabindex="-1" type="text"/></label></div>
-<p class="quiz__err" hidden="" id="qErr" role="alert"></p>
-</section>
-<div class="quiz__nav">
-<button class="btn btn--text btn--back" hidden="" id="qBack" type="button"><svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg> Назад</button>
-<span></span>
-<button class="btn btn--ink" id="qNext" type="button">Далее <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
-<button class="btn btn--accent" hidden="" id="qSubmit" type="submit">Подготовить заявку</button>
+<p class="quiz__err nq__full" hidden="" id="qErr" role="alert"></p>
+<button class="btn btn--accent nq__btn nq__full" id="qSubmit" type="submit">Отправить заявку <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
 </div>
+<p class="preview-form-note nq__note">Предпросмотр: формы проверяют данные, но&nbsp;не&nbsp;отправляют заявки в&nbsp;ЦРВУ.</p>
 </form>
-<div class="quiz__ok" hidden="" id="quizOk" tabindex="-1">
+<div class="quiz__ok nq__card" hidden="" id="quizOk" tabindex="-1">
 <p class="quiz__step">Заявка</p>
 <h3 id="quizOkTitle">Черновик готов</h3>
 <p id="quizOkText"></p>
 <dl class="quiz__sum" id="quizSum"></dl>
 <p><button class="btn btn--soft btn--sm" id="quizAgain" type="button">Заполнить ещё одну заявку</button></p>
-<p class="preview-result">В&nbsp;этой версии заявка не&nbsp;отправлена. Вы проверили заполнение формы; реальные обращения принимаются по&nbsp;телефону или в&nbsp;мессенджере.</p><button class="btn btn--soft" data-download-draft="" type="button">Скачать черновик заявки</button></div>
-</div>
-<aside aria-label="Что подготовить" class="quiz__aside rv rv-d1"><h3>Что подготовить к&nbsp;брифу</h3><ul><li>План площадки или размеры.</li><li>Название выставки и&nbsp;даты.</li><li>Состав экспозиции и&nbsp;бюджетный ориентир.</li></ul><p class="hint">Нет плана под рукой — не&nbsp;страшно: менеджер запросит его сам.</p></aside>
-</div></details>
-</div>
-</section>
-<!-- ============ КОНТАКТЫ ============ -->
-<section aria-labelledby="contacts-title" class="sec contacts contacts--light" id="contacts">
-<div class="container">
-<div class="contacts__grid">
-<div>
-<p class="tag">Контакты</p>
-<h2 class="contacts__h" id="contacts-title" style="margin-top:1.1rem">Обсудим вашу экспозицию</h2>
-<p class="contacts__txt">Расскажите о&nbsp;выставке и&nbsp;задаче — предложим решение: яркое, чтобы вас запомнили, или оптимальное под ваш бюджет.</p>
-<div class="contacts__cta">
-<a class="btn btn--accent" data-open-quiz="contacts" href="#quiz">Отправить план площадки <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
-<a class="btn btn--soft" data-goal="click_phone" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg> Позвонить</a>
+<p class="preview-result">В&nbsp;этой версии заявка не&nbsp;отправлена. Вы проверили заполнение формы; реальные обращения принимаются по&nbsp;телефону или в&nbsp;мессенджере.</p><button class="btn btn--soft" data-download-draft="" type="button">Скачать черновик заявки</button>
 </div>
 </div>
-<dl class="clist">
-<div><dt class="mono">Телефон</dt><dd><a class="tel" data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a></dd></div>
-<div><dt class="mono">Email</dt><dd><a href="mailto:manager@crvu.ru">manager@crvu.ru</a></dd></div>
-<div><dt class="mono">Адрес</dt><dd>123007, Москва, 2-й Хорошёвский проезд, д. 7, корп. 1</dd></div>
-<div><dt class="mono">Мессенджеры</dt><dd>
-<span class="msg">
-<a data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="30" loading="lazy" src="assets/logos/telegram.svg" width="30"/> Написать в Telegram</a>
-<a data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="30" loading="lazy" src="assets/logos/max.svg" width="30"/> Написать в MAX</a>
-</span></dd></div>
-</dl>
 </div>
 </div>
 </section>

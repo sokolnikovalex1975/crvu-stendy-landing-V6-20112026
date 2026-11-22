@@ -216,11 +216,10 @@
   CRVU.openQuiz = function (prefill, source) {
     var q = $('#quiz');
     if (!q) { return; }
-    var details=$('#advancedQuiz');if(details && prefill && Object.keys(prefill).length){details.open=true;}
     if (CRVU.quiz && CRVU.quiz.prefill) { CRVU.quiz.prefill(prefill || {}, source); }
     q.scrollIntoView({ behavior: CRVU.reduced ? 'auto' : 'smooth', block: 'start' });
     setTimeout(function () {
-      var target = details && !details.open ? $('#quickName') : ($('#quizOk:not([hidden])') || $('.qstep:not([hidden]) input:not([type=radio]):not([type=checkbox]), .qstep:not([hidden]) select'));
+      var target = $('#quizOk:not([hidden])') || $('#qName');
       if (target && target.focus) { try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); } }
     }, CRVU.reduced ? 50 : 650);
   };
@@ -281,9 +280,9 @@
     var inQuiz = {};
     var qio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { inQuiz[en.target.id] = en.isIntersecting; });
-      d.body.classList.toggle('in-quiz', !!(inQuiz.quiz || inQuiz.contacts));
+      d.body.classList.toggle('in-quiz', !!inQuiz.quiz);
     }, { threshold: 0.15 });
-    ['quiz', 'contacts'].forEach(function (id) { var el = d.getElementById(id); if (el) { qio.observe(el); } });
+    ['quiz'].forEach(function (id) { var el = d.getElementById(id); if (el) { qio.observe(el); } });
 
     $$('[data-goal-view]').forEach(function (el) {
       var vio = new IntersectionObserver(function (entries) {

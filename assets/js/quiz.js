@@ -1,5 +1,5 @@
 /*!
- * ЦРВУ — заявка (3 шага; уровень и опции приходят из калькулятора), форма для закупок и тендеров.
+ * ЦРВУ — заявка (одна форма: имя, телефон, выставка и план площадки; параметры приходят из калькулятора), форма для закупок и тендеров.
  * Отправка — заглушка CRVU.submitLead (core.js): подключите CRM или почту manager@crvu.ru, см. README.
  */
 (function (w, d) {
@@ -62,17 +62,17 @@
   function field(form, name) { return form.querySelector('[name="' + name + '"]'); }
   function val(el) { return el ? el.value.trim() : ''; }
 
-  /* ================================================================== квиз */
+  /* ================================================================== заявка: одна форма (V6-20112026, вариант А) */
   var form = $('#quizForm');
   if (form) {
-    var steps = $$('.qstep', form), bars = $$('.quiz__bar i'), prog = $('#qProg');
-    var back = $('#qBack'), next = $('#qNext'), submit = $('#qSubmit'), okBox = $('#quizOk');
-    var area = $('#qArea'), expoSel = $('#qExpo'), dateWrap = $('#qDateWrap'), dateInp = $('#qDate'), venueSel = $('#qVenue'), hint = $('#qExpoHint');
+    var submit = $('#qSubmit'), okBox = $('#quizOk');
+    var expoSel = $('#qExpo'), dateWrap = $('#qDateWrap'), dateInp = $('#qDate'), hint = $('#qExpoHint');
     var fileInp = $('#qFile'), drop = $('#qDrop'), fileOk = $('#qFileOk'), fileName = $('#qFileName'), fileSize = $('#qFileSize'), fileRm = $('#qFileRm'), fileErr = $('#qFile-e');
-    var later = $('#qLater'), comment = $('#qComment');
-    var nameI = $('#qName'), phoneI = $('#qPhone'), emailI = $('#qEmail'), consent = $('#qConsent'), hp = $('#qHp'), err = $('#qErr');
-    var venueManual=false;venueSel.addEventListener('change',function(){venueManual=true;});
-    var cur = 1, started = false, file = null, busy = false, source = 'direct', submitHtml = submit.innerHTML, calcRef = null, sumBox = $('#qCalcSum');
+    var nameI = $('#qName'), phoneI = $('#qPhone'), consent = $('#qConsent'), hp = $('#qHp'), err = $('#qErr');
+    var sumBox = $('#qCalcSum'), ctxBox = $('#qCtx');
+    var started = false, file = null, busy = false, source = 'direct', submitHtml = submit.innerHTML, calcRef = null;
+    /* то, что пришло из других блоков страницы и не видно в форме полями */
+    var pref = { area: null, type: '', venueLabel: '', comment: '', commentSrc: '' };
     function money(n) { return CRVU.fmtNum(n) + '\u00a0₽'; }
     function calcRange(c) { if (c.small || c.lo === null) { return 'индивидуальный расчёт'; } return c.hi === null ? 'от ' + money(c.lo) : CRVU.fmtNum(c.lo) + ' – ' + money(c.hi) + (c.openEnded ? ' и выше' : ''); }
     function renderCalc() {
@@ -81,6 +81,12 @@
       var parts = [CRVU.fmtArea(calcRef.S) + ' м²', calcRef.typeLabel, calcRef.levelLabel].concat(calcRef.extras || []);
       sumBox.innerHTML = '<div class="calc-sum__row"><p>Ваш расчёт: <b>' + CRVU.esc(nb(calcRange(calcRef))) + '</b></p><a href="#calculator">Изменить</a></div><p>' + CRVU.esc(nb(parts.filter(Boolean).join(' · '))) + '</p>';
       sumBox.hidden = false;
+    }
+    function renderCtx() {
+      if (!ctxBox) { return; }
+      var show = !!pref.comment && (pref.commentSrc === 'case' || pref.commentSrc === 'lightbox');
+      ctxBox.hidden = !show;
+      ctxBox.textContent = show ? nb('К заявке добавим: ' + pref.comment) : '';
     }
 
     CRVU.autoClear(form);
@@ -97,16 +103,13 @@
       o.value = p[0]; o.textContent = p[1];
       expoSel.appendChild(o);
     });
-
+    function expoById(id) { var e = null; D.expos.forEach(function (x) { if (x.id === id) { e = x; } }); return e; }
     function onExpo() {
       var id = expoSel.value;
       dateWrap.hidden = id !== 'other';
       hint.hidden = true;
       hint.classList.remove('plan__status--hot');
       if (id && id !== 'other' && id !== 'unknown') {
-        var e = null;
-        D.expos.forEach(function (x) { if (x.id === id) { e = x; } });
-        if (e && !venueManual) { venueSel.value = venueFor(e.venue); }
         var h = CRVU.planner && CRVU.planner.hint(id);
         if (h && h.kind !== 'gone') {
           hint.textContent = nb(h.text);
@@ -117,54 +120,15 @@
     }
     expoSel.addEventListener('change', onExpo);
 
-    /* шаги */
-    function showStep(n, focus) {
-      cur = n;
-      steps.forEach(function (s) { s.hidden = +s.getAttribute('data-step') !== n; });
-      bars.forEach(function (b, i) { b.className = i + 1 < n ? 'is-done' : (i + 1 === n ? 'is-cur' : ''); });
-      prog.textContent = 'Шаг ' + n + ' из ' + steps.length;
-      back.hidden = n === 1;
-      next.hidden = n === steps.length;
-      submit.hidden = n !== steps.length;
-      if (focus) {
-        var h = $('#qs' + n);
-        if (h) {
-          h.setAttribute('tabindex', '-1');
-          try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); }
-          var r = form.getBoundingClientRect();
-          if (r.top < 90 || r.top > w.innerHeight * 0.6) { w.scrollTo({ top: r.top + (w.pageYOffset || 0) - 110, behavior: CRVU.reduced ? 'auto' : 'smooth' }); }
-        }
-      }
-    }
-    function parseArea(v) {
-      var s = String(v).replace(/\s/g, '').replace(',', '.');
-      return /^\d+(\.\d+)?$/.test(s) ? parseFloat(s) : NaN;
-    }
-    function validate(n) {
+    function validate() {
       var bad = null;
       function fail(el, msg) { CRVU.showErr(el, msg); if (!bad) { bad = el; } }
-      if (n === 1) {
-        var S = parseArea(area.value);
-        if (!$('#qAreaUnknown').checked && (!isFinite(S) || S <= 0)) { fail(area, MSG.area); }
-        else if (S > 5000) { fail(area, 'Проверьте площадь: введите значение в м².'); }
-      }
-      if (n === steps.length) {
-        if (!nameI.value.trim()) { fail(nameI, MSG.name); }
-        if (!CRVU.isPhone(phoneI.value)) { fail(phoneI, MSG.phone); }
-        if (emailI.value.trim() && !CRVU.isEmail(emailI.value)) { fail(emailI, MSG.email); }
-        if (!consent.checked) { fail(consent, MSG.consent); }
-      }
+      if (!nameI.value.trim()) { fail(nameI, MSG.name); }
+      if (!CRVU.isPhone(phoneI.value)) { fail(phoneI, MSG.phone); }
+      if (!consent.checked) { fail(consent, MSG.consent); }
       if (bad) { bad.focus(); return false; }
       return true;
     }
-    function goNext() {
-      if (!validate(cur)) { return; }
-      showStep(cur + 1, true);
-      CRVU.track('quiz_step_' + cur);
-    }
-    next.addEventListener('click', goNext);
-    back.addEventListener('click', function () { err.hidden = true; showStep(cur - 1, true); });
-
     ['input', 'change', 'focusin'].forEach(function (ev) {
       form.addEventListener(ev, function () {
         if (!started) { started = true; CRVU.track('quiz_start'); }
@@ -194,7 +158,6 @@
       fileSize.textContent = fmtSize(f.size);
       fileOk.hidden = false;
       drop.hidden = true;
-      later.checked = false;
       CRVU.track('upload_plan', { ext: ext });
     }
     function removeFile() {
@@ -216,35 +179,33 @@
       var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
       if (f) { setFile(f); }
     });
-    later.addEventListener('change', function () { if (later.checked && file) { removeFile(); } });
 
     /* сбор данных */
-    function checkedValues(name) { return $$('input[name="' + name + '"]:checked', form).map(function (i) { return i.value; }); }
     function collect() {
-      var e = null, id = expoSel.value;
-      D.expos.forEach(function (x) { if (x.id === id) { e = x; } });
-      var type = checkedValues('qtype')[0] || '', level = (calcRef && calcRef.level) || '';
+      var id = expoSel.value, e = expoById(id);
+      var type = pref.type || (calcRef && calcRef.type) || '', level = (calcRef && calcRef.level) || '';
       var typeLabel = type && D.calculator && D.calculator.types[type] ? D.calculator.types[type].label : '';
       var levelLabel = level && D.calculator && D.calculator.levels[level] ? D.calculator.levels[level].label : '';
+      var venue = e ? venueFor(e.venue) : (pref.venueLabel ? venueFor(pref.venueLabel) : '');
       return {
         form: 'quiz', source: source, ts: new Date().toISOString(), page: w.location.href, utm: CRVU.utm(),
-        stand: { area: $('#qAreaUnknown').checked ? null : parseArea(area.value), type: type, typeLabel: typeLabel, level: level, levelLabel: levelLabel, extras: calcRef ? calcRef.extras : [], ledCount: calcRef ? calcRef.ledCount : 0, floorArea: calcRef ? calcRef.floorArea : 0, estimate: calcRef ? { lo: calcRef.lo, hi: calcRef.hi } : null },
-        expo: { id: id, name: e ? e.name : (id === 'other' ? (expoSel.dataset.customName || 'Другая выставка') : (id === 'unknown' ? 'Пока не знаю' : '')), dates: e ? e.dates : '', openDate: id === 'other' ? dateInp.value : (e ? e.open : ''), venue: venueSel.value },
-        plan: file ? { name: file.name, size: file.size, type: file.type } : (later.checked ? 'пришлёт позже' : null),
-        show: checkedValues('qshow'), weight: val($('#qWeight')), comment: comment.value.trim(),
-        contact: { name: nameI.value.trim(), phone: '+7' + CRVU.phoneDigits(phoneI.value), email: emailI.value.trim(), company: val($('#qCompany')) },
+        stand: { area: calcRef ? calcRef.S : pref.area, type: type, typeLabel: typeLabel, level: level, levelLabel: levelLabel, extras: calcRef ? calcRef.extras : [], ledCount: calcRef ? calcRef.ledCount : 0, floorArea: calcRef ? calcRef.floorArea : 0, estimate: calcRef ? { lo: calcRef.lo, hi: calcRef.hi } : null },
+        expo: { id: id, name: e ? e.name : (id === 'other' ? (expoSel.dataset.customName || 'Другая выставка') : (id === 'unknown' ? 'Пока не знаю' : '')), dates: e ? e.dates : '', openDate: id === 'other' ? dateInp.value : (e ? e.open : ''), venue: venue },
+        plan: file ? { name: file.name, size: file.size, type: file.type } : null,
+        comment: pref.comment,
+        contact: { name: nameI.value.trim(), phone: '+7' + CRVU.phoneDigits(phoneI.value) },
         consent: true
       };
     }
 
     function okText(hasPlan) {
-      if(w.CRVU_CONFIG.preview)return 'Черновик подготовлен в вашем браузере. Заявка и файл НЕ отправлены в ЦРВУ.';
+      if (w.CRVU_CONFIG.preview) { return 'Черновик подготовлен в вашем браузере. Заявка и файл НЕ отправлены в ЦРВУ.'; }
       return hasPlan
-        ? 'Заявка принята. Менеджер изучит план площадки и свяжется с вами в рабочее время.'
-        : 'Заявка принята. Менеджер свяжется с вами в рабочее время, уточнит детали и запросит план площадки.';
+        ? 'Заявка принята. Менеджер изучит план площадки и свяжется с вами.'
+        : 'Заявка принята. Менеджер свяжется с вами, уточнит детали и запросит план площадки.';
     }
     function showOk(data) {
-      $('#quizOkTitle').textContent = (w.CRVU_CONFIG.preview?'Черновик готов':'Заявка передана');
+      $('#quizOkTitle').textContent = (w.CRVU_CONFIG.preview ? 'Черновик готов' : 'Заявка передана');
       $('#quizOkText').textContent = nb(okText(!!file));
       var rows = [];
       if (data.stand.area) { rows.push(['Площадь', CRVU.fmtArea(data.stand.area) + ' м²']); }
@@ -254,6 +215,7 @@
       if (calcRef) { rows.push(['Ориентир', calcRange(calcRef)]); }
       if (data.expo.name) { rows.push(['Выставка', data.expo.name + (data.expo.dates ? ', ' + data.expo.dates : '')]); }
       if (file) { rows.push(['План площадки', file.name]); }
+      if (data.comment && (pref.commentSrc === 'case' || pref.commentSrc === 'lightbox')) { rows.push(['Комментарий', data.comment]); }
       rows.push(['Контакт', data.contact.name + ', ' + phoneI.value]);
       $('#quizSum').innerHTML = rows.map(function (r) { return '<div><dt>' + CRVU.esc(r[0]) + '</dt><dd>' + CRVU.esc(nb(r[1])) + '</dd></div>'; }).join('');
       form.hidden = true;
@@ -266,15 +228,15 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (busy) { return; }
-      if (cur < steps.length) { goNext(); return; }
-      if (!validate(steps.length)) { return; }
+      if (CRVU.cbxCommit) { CRVU.cbxCommit(expoSel); }
+      if (!validate()) { return; }
       err.hidden = true;
       var data = collect();
       if (hp.value) { showOk(data); return; }   /* поле-ловушка для ботов заполнено: молча «успех» без отправки */
       busy = true;
       submit.disabled = true;
       submit.setAttribute('aria-busy', 'true');
-      submit.textContent=w.CRVU_CONFIG.preview?'Готовим черновик…':'Отправляем…';
+      submit.textContent = w.CRVU_CONFIG.preview ? 'Готовим черновик…' : 'Отправляем…';
       withTimeout(CRVU.submitLead({ data: data, file: file }, 'quiz'))
         .then(function () {
           CRVU.track('quiz_submit', { area: data.stand.area, level: data.stand.level || 'none' });
@@ -292,10 +254,6 @@
         });
     });
 
-    /* подстановка данных из калькулятора, планировщика, кейсов */
-    function setChecked(name, value, on) {
-      $$('input[name="' + name + '"]', form).forEach(function (i) { if (i.value === value) { i.checked = on; } });
-    }
     function reset() {
       form.reset();
       removeFile();
@@ -304,60 +262,41 @@
       err.hidden = true;
       dateWrap.hidden = true;
       hint.hidden = true;
+      delete expoSel.dataset.customName;
       $$('.has-error', form).forEach(function (f) { f.classList.remove('has-error'); });
       $$('.err', form).forEach(function (f) { f.hidden = true; });
       $$('[aria-invalid="true"]', form).forEach(function (f) { f.setAttribute('aria-invalid', 'false'); });
       started = false;
-      showStep(1, false);
       if (CRVU.cbxSync) { CRVU.cbxSync(expoSel); }
       renderCalc();
+      renderCtx();
     }
-    $('#quizAgain').addEventListener('click', function () { reset(); area.focus(); });
+    $('#quizAgain').addEventListener('click', function () { reset(); nameI.focus(); });
 
+    /* подстановка данных из калькулятора, календаря выставок, кейсов */
     CRVU.quiz = {
       reset: reset,
       prefill: function (o, src) {
+        o = o || {};
         if (src) { source = src; }
         if (!okBox.hidden) { reset(); }
-        var any = false;
-        if (o.area) { $('#qAreaUnknown').checked=false;area.disabled=false;area.value = CRVU.fmtArea(o.area); any = true; CRVU.clearErr(area); }
-        if (o.type) { setChecked('qtype', o.type, true); any = true; }
-        if (o.level) { setChecked('qlevel', o.level, true); any = true; }
-        if (Array.isArray(o.extras)) {
-          $$('input[name="qx"]', form).forEach(function (i) { i.checked = o.extras.indexOf(i.value) >= 0; });
-          any = true;
-        }
-        if (o.ledCount !== undefined && $('#qLedCount')) { $('#qLedCount').value = o.ledCount || 1; }
-        if (o.floorArea !== undefined && $('#qFloorArea')) { $('#qFloorArea').value = o.floorArea || ''; }
-        if (CRVU.syncQuizExtras) { CRVU.syncQuizExtras(); }
+        if (o.area) { pref.area = o.area; }
+        if (o.type) { pref.type = o.type; }
+        if (o.venueLabel) { pref.venueLabel = o.venueLabel; }
         if (o.expo) {
           expoSel.value = o.expo;
           if (expoSel.value !== o.expo) { expoSel.value = 'other'; }
           if (expoSel.value === 'other' && o.expoName) { expoSel.dataset.customName = o.expoName; } else if (expoSel.value !== 'other') { delete expoSel.dataset.customName; }
           if (o.date) { dateInp.value = o.date; }
-          any = true;
+          onExpo();
         }
-        if (o.venueLabel) {
-          var v = venueFor(o.venueLabel);
-          venueSel.value = v;
-        }
-        if (o.expo) { onExpo(); }
         if (CRVU.cbxSync) { CRVU.cbxSync(expoSel); }
-        if (o.calc) { calcRef = o.calc; any = true; }
+        if (o.calc) { calcRef = o.calc; }
+        if (o.comment) { pref.comment = o.comment; pref.commentSrc = src || ''; }
         renderCalc();
-        if (o.comment) {
-          if(src==='calculator'){comment.value=comment.value.split('\n').filter(function(l){return l.indexOf('Ориентир из калькулятора:')!==0;}).join('\n').trim();}
-          if (comment.value && comment.value.indexOf(o.comment) < 0) { comment.value += '\n' + o.comment; } else { comment.value = o.comment; }
-          any = true;
-        }
-        if (any) {
-          var ok = isFinite(parseArea(area.value)) && parseArea(area.value) > 0;
-          showStep(o.expo && ok ? 2 : 1, false);
-        }
+        renderCtx();
       }
     };
-
-    showStep(1, false);
   }
 
   /* ================================================================== форма «для закупок и тендеров» */

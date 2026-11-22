@@ -33,36 +33,76 @@
 }
 
 /* ==========================================================
-   V6-20112026: блок «Заявка» (компьютер — вариант А, телефон — без изменений)
+   V6-20112026: блок «Заявка» — одна форма (вариант А), блок «Обсудим вашу экспозицию» убран
    ========================================================== */
-.qmr, .qplan { display: none; }
-@media (min-width: 900px) {
-  #quiz .sec__head { margin-bottom: 1.5rem; }
-  .qpaths { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: stretch; }
-  #quiz .quick-form { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto auto 1fr; margin: 0; border-radius: 22px; padding: 1.6rem; gap: 0.9rem 1rem; }
-  #quiz .quick-form h3 { font-size: 1.375rem; }
-  #quiz .quick-form button { justify-self: stretch; min-height: 52px; }
-  #quiz .quick-status { margin: 0; }
-  .qmr { grid-column: 1 / -1; align-self: end; display: grid; grid-template-columns: auto 1fr 1fr; gap: 0.5rem 0.6rem; align-items: center; padding-top: 0.85rem; border-top: 1px solid var(--line); }
-  .qmr span { padding-right: 0.25rem; font-size: 0.875rem; color: var(--ink-2); }
-  .qmr__b { display: flex; align-items: center; justify-content: center; gap: 0.45rem; min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: #fff; font-weight: 600; font-size: 0.9375rem; color: var(--ink); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
-  .qmr__b:hover { border-color: var(--accent); color: var(--accent-ink); }
-  .qmr__b img { width: 22px; height: 22px; }
-  .qplan { display: grid; gap: 0.85rem; align-content: start; padding: 1.6rem; border-radius: 22px; background: var(--ink); color: #fff; }
-  .qplan__tag { justify-self: start; margin: 0; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgba(255, 255, 255, 0.12); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; }
-  .qplan h3 { margin: 0; font-family: var(--font-display); font-size: 1.375rem; line-height: 1.2; color: #fff; }
-  .qplan__p { margin: 0; max-width: 44ch; font-size: 0.9375rem; color: rgba(255, 255, 255, 0.72); }
-  .qplan__l { display: grid; gap: 0.5rem; margin: 0.1rem 0 0.3rem; padding: 0; list-style: none; }
-  .qplan__l li { display: flex; gap: 0.55rem; align-items: center; font-size: 0.9375rem; color: #fff; }
-  .qplan__l .ico { flex: none; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: rgba(255, 85, 0, 0.2); fill: none; stroke: #ff8a4c; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-  .qplan__btn { justify-self: stretch; justify-content: center; min-height: 52px; }
-  #quiz .preview-form-note { margin: 0.75rem 0 0; }
-  #advancedQuiz > summary { display: none; }
-  #advancedQuiz[open] { margin-top: 1.5rem; }
+#quiz { padding-block: clamp(3.5rem, 6vw, 5.5rem); }
+.nq {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  grid-template-areas: "head box" "next box" "con box" ". box";
+  grid-template-rows: auto auto auto 1fr;
+  column-gap: clamp(2rem, 6vw, 5.5rem);
+  align-items: start;
 }
-@media (min-width: 900px) and (max-width: 1180px) {
-  .qmr { grid-template-columns: 1fr 1fr; }
-  .qmr span { grid-column: 1 / -1; }
+.nq__head { grid-area: head; }
+.nq__next { grid-area: next; margin-top: 2.25rem; }
+.nq__con { grid-area: con; margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.nq__box { grid-area: box; }
+.nq__head .sec__title { margin: 1rem 0 0; }
+.nq__head .sec__lead { margin: 1rem 0 0; max-width: 44ch; }
+.nq__h { margin: 0 0 0.75rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.nq__steps { display: grid; gap: 0.9rem; margin: 0; padding: 0; list-style: none; }
+.nq__steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+.nq__steps li > span { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; }
+.nq__steps p { margin: 0; font-size: 0.9375rem; line-height: 1.45; color: var(--ink-2); }
+.nq__steps b { display: block; margin-bottom: 0.1rem; font-size: 1rem; color: var(--ink); }
+.nq__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.5rem; margin: 0; }
+.nq__links a { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 36px; font-size: 0.9375rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.nq__links a:hover { color: var(--accent-ink); }
+.nq__links .ico { width: 18px; height: 18px; fill: none; stroke: var(--ink-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nq__links img { width: 20px; height: 20px; }
+.nq__links .nq__tel { font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; }
+/* карточка формы */
+.nq__card { display: block; margin: 0; padding: clamp(1.25rem, 2.6vw, 2rem); border-radius: 24px; border: 1px solid var(--line); background: #fff; box-shadow: var(--sh-2); }
+.nq__ct { margin: 0; font-family: var(--font-display); font-size: 1.375rem; line-height: 1.2; }
+.nq__sub { margin: 0.35rem 0 0; font-size: 0.9375rem; color: var(--ink-2); }
+.nq__card .calc-sum { margin: 1rem 0 0; }
+.nq__ctx { margin: 1rem 0 0; padding: 0.75rem 0.9rem; border-radius: 12px; background: var(--paper); font-size: 0.875rem; color: var(--ink-2); }
+.nq__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1rem; margin-top: 1.25rem; }
+.nq__grid .field { margin: 0; }
+.nq__full { grid-column: 1 / -1; }
+.nq__grid .plan__status { margin: -0.25rem 0 0; padding: 0.7rem 0.9rem; border-radius: 12px; font-size: 0.875rem; line-height: 1.45; }
+.nq__card .check span { hyphens: manual; }
+.nq__drop { position: relative; display: flex; gap: 0.85rem; align-items: center; padding: 0.85rem 1rem; border: 1.5px dashed var(--line-2); border-radius: 14px; background: var(--paper); cursor: pointer; transition: border-color 0.2s, background-color 0.2s; }
+.nq__drop:hover, .nq__drop.is-over { border-color: var(--ink); background: #fff; }
+.nq__drop:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
+.nq__drop.has-error { border-color: var(--danger); background: #fdf3f2; }
+.nq__drop input[type='file'] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.nq__drop .ico { flex: none; width: 36px; height: 36px; padding: 8px; border-radius: 10px; background: #fff; fill: none; stroke: var(--accent-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.nq__drop span { font-size: 0.8125rem; font-weight: 400; line-height: 1.4; color: var(--ink-2); }
+.nq__drop b { display: block; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
+.nq__btn { justify-content: center; min-height: 54px; font-size: 1rem; }
+.nq__grid .quiz__err { margin: 0; }
+.nq__note { margin: 0.9rem 0 0; font-size: 0.75rem; color: var(--ink-3); }
+.nq__box .quiz__ok { display: grid; gap: 0.75rem; justify-items: start; box-shadow: var(--sh-2); }
+.nq__box .quiz__ok > * { margin: 0; }
+.nq__box .quiz__ok h3 { font-size: 1.5rem; }
+.nq__box .quiz__ok .quiz__sum { justify-self: stretch; }
+@media (max-width: 900px) {
+  .nq { grid-template-columns: 1fr; grid-template-areas: "head" "box" "con"; grid-template-rows: none; row-gap: 1.5rem; }
+  .nq__next { display: none; }
+  .nq__head .sec__title { margin-top: 0.85rem; }
+  .nq__con { margin-top: 0.25rem; padding-top: 1.25rem; }
+  .nq__grid { grid-template-columns: 1fr; }
+  .nq__ct { font-size: 1.25rem; }
+  .nq__links { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 0.75rem; }
+  .nq__links .nq__tel, .nq__links .nq__mail { grid-column: 1 / -1; }
+  .nq__links .nq__msg { justify-content: center; min-height: 44px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .nq__grid { grid-template-columns: 1fr 1fr; }
+  .nq__links { display: flex; gap: 0.6rem 1.5rem; }
+  .nq__links .nq__msg { min-height: 36px; border: 0; border-radius: 0; background: none; }
 }
 
 /* ==========================================================
