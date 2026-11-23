@@ -13,7 +13,7 @@
   var PHONE = '+7 (495) 106-70-22';
   var ARROW = '<svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>';
 
-  /* ================================================================== калькулятор (вариант V5-20112026)
+  /* ================================================================== калькулятор
      Ставки — документ «Цены для калькулятора ЦРВУ» от 19.11.2026.
      Формула: стенд = S × ставка уровня (нижняя / верхняя) × коэффициент типа застройки.
      Угловой и полуостров — 1,00; линейный — +10 % (для «Премиума» не применяем, уточним в смете); остров — коэффициент уточняется.
@@ -186,7 +186,7 @@
       if (!last) { CRVU.openQuiz({}, 'calculator'); return; }
       CRVU.openQuiz({ area: last.S, type: last.type, calc: last }, 'calculator');
     });
-    pdfBtn.addEventListener('click', function () { if (!last) { return; } w.open('calculation.html#' + encodeURIComponent(JSON.stringify(last)), '_blank', 'noopener'); });
+    pdfBtn.addEventListener('click', function () { if (!last) { return; } CRVU.track('calc_pdf'); CRVU.track('file_download', { asset_id: 'calculation_pdf' }); w.open('calculation.html#' + encodeURIComponent(JSON.stringify(last)), '_blank', 'noopener'); });
 
     syncFloor(); syncLed(); paintRange(); syncBtns();
     if (area.value.trim()) { run(false, true); }
@@ -445,7 +445,7 @@
         a.href = url; a.download = 'crvu-srok-' + current.id + '.ics';
         d.body.appendChild(a); a.click(); d.body.removeChild(a);
         setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
-        CRVU.track('planner_ics', { expo: current.id });
+        CRVU.track('planner_ics', { expo: current.id }); CRVU.track('file_download', { asset_id: 'planner_ics' });
       }
     });
   })();

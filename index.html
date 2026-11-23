@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title>ЦРВУ — эксклюзивные выставочные стенды под ваш бюджет | вариант V6-20112026</title>
+<title>ЦРВУ — эксклюзивные выставочные стенды под ваш бюджет</title>
 <meta content="Выставочные стенды под ключ: дизайн, производство, монтаж и демонтаж. Три уровня — Эконом, Эксклюзив и Премиум. Реальные проекты ЦРВУ, калькулятор стоимости и планировщик сроков." name="description"/>
-<meta content="noindex, nofollow" name="robots"/>
+<link href="https://stendy.crvu.ru/" rel="canonical"/>
 <meta content="#f6f5f2" name="theme-color"/>
 <meta content="website" property="og:type"/>
 <meta content="ru_RU" property="og:locale"/>
 <meta content="ЦРВУ" property="og:site_name"/>
 <meta content="Эксклюзивные выставочные стенды под ваш бюджет — ЦРВУ" property="og:title"/>
 <meta content="Проект, производство, монтаж и демонтаж в одних руках. Рассчитайте ориентир стоимости стенда в калькуляторе." property="og:description"/>
-<meta content="https://sokolnikovalex1975.github.io/crvu-stendy-landing-V6-20112026/assets/v5/hero/og-delta-1200x630.jpg" property="og:image"/>
-<meta content="https://sokolnikovalex1975.github.io/crvu-stendy-landing-V6-20112026/" property="og:url"/>
+<meta content="https://stendy.crvu.ru/assets/v5/hero/og-delta-1200x630.jpg" property="og:image"/>
+<meta content="https://stendy.crvu.ru/" property="og:url"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="Визуализация выставочного стенда Delta Battery: белый портал с оранжевой подсветкой, витрины и стойка ресепшн" property="og:image:alt"/>
@@ -35,7 +35,61 @@
 <link href="assets/css/infographics.css" rel="stylesheet"/>
 <link href="assets/css/calc-compact.css" rel="stylesheet"/>
 <link href="assets/css/v6.css" rel="stylesheet"/>
-<!-- Яндекс Метрика, Varioqub и UIS в этой версии НЕ подключены: это превью для проверки. -->
+<link href="assets/css/site.css" rel="stylesheet"/>
+<!-- Интеграции рабочего сайта: Varioqub — только на https://stendy.crvu.ru; Яндекс Метрика 103630235 и UIS — на https://stendy.crvu.ru и закрытом тесте https://test.crvu.ru -->
+<script src="assets/js/config.js"></script>
+<script data-crvu-varioqub="">
+(function () {
+  if (window.location.origin !== "https://stendy.crvu.ru"
+      || !/^\/(?:landing(?:_b)?\/?)?$/.test(window.location.pathname)
+      || window.ymab !== undefined) return;
+  var params = new URLSearchParams(window.location.search);
+  if (/^\/(?:chat\/)?$/.test(window.location.pathname)
+      && ['utm_source', 'utm_medium', 'network', 'utm_campaign'].every(function(key){ return params.getAll(key).length === 1; })
+      && params.get('utm_source') === 'yandex' && params.get('utm_medium') === 'cpc'
+      && params.get('network') === 'search' && [
+        'poisk_crvu_zastroyka_vistavok_714416091',
+        'poisk_auto_crvu_obshie_msk_714416070',
+        'poisk_auto_crvu_obshie_konv_msk_714416070'
+      ].includes(params.get('utm_campaign'))) {
+    var style = document.createElement('style');
+    style.textContent = '.varioqub-antiflicker { opacity: 0 !important; }';
+    document.head.appendChild(style);
+    (function(a,n,t,i,f,li,c){
+      a[t]=a[t]||function(){(a[t].a=a[t].a||[]).push(arguments)};n.classList.add(i);
+      c=function(){n.classList.remove(i)};li.callback=c;a[t].antiFlicker=li;setTimeout(c,f);
+    })(window, document.documentElement, 'ymab', 'varioqub-antiflicker', 4000, { 'metrika.103630235': true });
+  }
+  (function(e, x, pe, r, i, me, nt){
+    e[i]=e[i]||function(){(e[i].a=e[i].a||[]).push(arguments)},
+    me=x.createElement(pe),me.async=1,me.src=r,nt=x.getElementsByTagName(pe)[0],
+    me.addEventListener('error',function(){e[i].antiFlicker&&e[i].antiFlicker.callback();function cb(t){t=t[t.length-1],'function'==typeof t&&t({flags:{}})};Array.isArray(e[i].a)&&e[i].a.forEach(cb);e[i]=function(){cb(arguments)}}),
+    nt.parentNode.insertBefore(me,nt)
+  })(window, document, 'script', 'https://abt.s3.yandex.net/expjs/latest/exp.js', 'ymab');
+  window.ymab('metrika.103630235', 'setConfig', { storeReferer: true });
+  window.ymab('metrika.103630235', 'init');
+})();
+</script>
+<script data-crvu-metrika="">
+(function (w, d) {
+  var C = w.CRVU_CONFIG || {}, o = w.location.origin;
+  if (o !== C.productionOrigin && o !== C.testOrigin) { return; }
+  var id = C.metrikaId;
+  /* Яндекс Метрика: те же настройки, что на прежней странице */
+  w.ym = w.ym || function () { (w.ym.a = w.ym.a || []).push(arguments); };
+  w.ym.l = 1 * new Date();
+  var s = d.createElement('script');
+  s.async = true;
+  s.src = 'https://mc.yandex.ru/metrika/tag.js?id=' + id;
+  d.head.appendChild(s);
+  w.ym(id, 'init', { accurateTrackBounce: true, clickmap: true, disableYtm: true, ecommerce: false, sendTitle: false, ssr: true, trackLinks: true, webvisor: true, url: w.location.href, referrer: d.referrer });
+  /* UIS: отслеживание звонков (подмена номера в ссылках с data-calltracking) */
+  var u = d.createElement('script');
+  u.async = true;
+  u.src = 'https://app.uiscom.ru/static/cs.min.js?k=' + C.uisKey;
+  d.head.appendChild(u);
+})(window, document);
+</script>
 </head>
 <body id="top-of-page">
 <a class="skip" href="#main">Перейти к содержимому</a>
@@ -74,10 +128,14 @@
 <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 4.2a4.6 4.6 0 0 0-4.2 6.4L3.8 17.3a1.9 1.9 0 0 0 2.7 2.7l6.7-6.7a4.6 4.6 0 0 0 6.4-4.2l-2.9 1.1-2.2-2.2z"></path></symbol>
 <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5.5 21V4M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"></path></symbol>
 <symbol id="v-cube" viewBox="0 0 24 24"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol><symbol id="v-stand" viewBox="0 0 24 24"><path d="M3 20h18M5 20V8h14v12M5 8l2-4h10l2 4"/><path d="M9 20v-6h6v6"/></symbol><symbol id="v-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h1M15 11h1M8 15h2M12 15h1M15 15h1M8 18h8"/></symbol><symbol id="v-contract" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8 13h8M8 17h4"/><circle cx="16.5" cy="17.5" r="1.5"/></symbol><symbol id="v-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18M8 14h3v3H8z"/></symbol><symbol id="v-flag" viewBox="0 0 24 24"><path d="M5.5 21V4M5.5 4.5h11l-2.2 3.8 2.2 3.8h-11"/></symbol><symbol id="v-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13h6l-1 8 8-10h-6z"/></symbol><symbol id="v-net" viewBox="0 0 24 24"><path d="M3 9a13 13 0 0 1 18 0M6 12.5a8.5 8.5 0 0 1 12 0M9 16a4 4 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/></symbol><symbol id="v-weight" viewBox="0 0 24 24"><path d="M6 9h12l2 11H4z"/><circle cx="12" cy="6" r="2.5"/></symbol><symbol id="v-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol><symbol id="v-hook" viewBox="0 0 24 24"><path d="M12 3v7M9 3h6"/><path d="M12 10a4 4 0 1 1-4 4"/></symbol><symbol id="v-cert" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="13" rx="2"/><path d="M8 7h8M8 10h5"/><circle cx="12" cy="17" r="2.5"/><path d="m10.5 19-1 3 2.5-1 2.5 1-1-3"/></symbol><symbol id="v-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></symbol><symbol id="v-lamp" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol><symbol id="v-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/></symbol><symbol id="v-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.6-1.6 1.7-2.4 3-2.4s2.4.8 3 2.4M14 10h4M14 13h3"/></symbol><symbol id="v-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 9v11"/></symbol><symbol id="v-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2"/></symbol><symbol id="v-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol><symbol id="v-draw" viewBox="0 0 24 24"><path d="M3 21h18M5 21V5h14v16"/><path d="M8 9h8M8 13h4M14 13h2M8 17h8"/></symbol><symbol id="v-area" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke-dasharray="3 2.5"/><path d="M8 12h8M12 8v8"/></symbol><symbol id="v-water" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></symbol><symbol id="v-sofa" viewBox="0 0 24 24"><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 12a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5H3zM6 17v2M18 17v2"/></symbol><symbol id="v-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8.3 7 10 4-1.7 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="v-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.5-6-10.5a6 6 0 0 1 12 0C18 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.2"/></symbol><symbol id="v-build" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-5h6v5"/></symbol><symbol id="v-badge" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="m9 13.5-2 7 5-2.5 5 2.5-2-7"/></symbol><symbol id="v-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol><symbol id="v-ruler" viewBox="0 0 24 24"><path d="m3 17 14-14 4 4L7 21z"/><path d="m7 13 2 2M10 10l2 2M13 7l2 2"/></symbol><symbol id="v-knot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6M3 12h6M15 12h6"/></symbol><symbol id="v-cam" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol><symbol id="v-height" viewBox="0 0 24 24"><path d="M7 3v18M17 3v18M7 7h10M7 12h10M7 17h10"/></symbol><symbol id="v-therm" viewBox="0 0 24 24"><path d="M10 14V5a2 2 0 1 1 4 0v9a4 4 0 1 1-4 0z"/><path d="M12 9v7"/></symbol><symbol id="v-ok" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol><symbol id="i-box" viewBox="0 0 24 24"><path d="M3.5 7.5L12 3.5l8.5 4v9L12 20.5l-8.5-4z"></path><path d="M3.5 7.5L12 11.5l8.5-4M12 11.5v9"></path></symbol>
+<symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"></path></symbol>
+<symbol id="i-flower" viewBox="0 0 24 24"><path d="M12 21v-7.5"></path><path d="M12 13.5c-3.2 0-5.3-2.3-5.3-5.8V5l2.65 1.9L12 4l2.65 2.9L17.3 5v2.7c0 3.5-2.1 5.8-5.3 5.8z"></path><path d="M12 18.5c-1.7-1.6-3.7-2.1-6-1.7M12 18.5c1.7-1.6 3.7-2.1 6-1.7"></path></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3.2l1.6-2.5h6.4L16.8 8H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"></path><circle cx="12" cy="13.2" r="3.4"></circle></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M4.5 10h11.5v4.5a5 5 0 0 1-5 5h-1.5a5 5 0 0 1-5-5z"></path><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"></path><path d="M8 3.5c-.8.9-.8 1.8 0 2.7M11 3.5c-.8.9-.8 1.8 0 2.7M14 3.5c-.8.9-.8 1.8 0 2.7"></path></symbol>
+<symbol id="i-bean" viewBox="0 0 24 24"><ellipse cx="9" cy="14.5" rx="4.4" ry="6" transform="rotate(-35 9 14.5)"></ellipse><path d="M6.2 18.4c1.2-1.4 1.6-3 1.9-4.4s.8-2.9 2.6-4.2"></path><ellipse cx="17" cy="7.5" rx="3.2" ry="4.4" transform="rotate(35 17 7.5)"></ellipse><path d="M19 4.7c-.9 1-1.2 2.1-1.4 3.2s-.6 2.1-1.9 3"></path></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></symbol>
 </defs>
 </svg>
-<div class="preview-bar">Вариант V6-20112026 · версия для проверки. Формы не&nbsp;отправляют заявки, аналитика отключена</div>
-<script>(function(){var b=document.querySelector(".preview-bar"),r=document.documentElement;function s(){r.style.setProperty("--pbar-h",(b?b.offsetHeight:0)+"px");}s();addEventListener("resize",s);})();</script>
 <!-- ============ ШАПКА ============ -->
 <header class="hdr" id="hdr">
 <div class="container hdr__in">
@@ -95,7 +153,11 @@
 </ul>
 </nav>
 <div class="hdr__tel">
-<a data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a>
+<a data-calltracking="sales" href="tel:+74951067022"><span data-calltracking-text="">+7 (495) 106-70-22</span></a>
+</div>
+<div aria-label="Мессенджеры для связи" class="hdr__msg" role="group">
+<a aria-label="Написать Глебу в Telegram" class="hdr__mi" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank" title="Telegram"><img alt="" height="34" src="assets/logos/telegram.svg" width="34"/></a>
+<a aria-label="Написать Глебу в MAX" class="hdr__mi" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank" title="MAX"><img alt="" height="34" src="assets/logos/max-128.webp" width="34"/></a>
 </div>
 <a class="btn btn--accent btn--sm hdr__cta" href="#calculator">Рассчитать стоимость</a>
 <button aria-controls="mmenu" aria-expanded="false" aria-label="Открыть меню" class="burger" id="burger" type="button">
@@ -111,7 +173,11 @@
 <a href="#process">Этапы <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
 <a href="#faq">Вопросы <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
 <div class="mmenu__foot">
-<a class="tel" data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a>
+<a class="tel" data-calltracking="sales" href="tel:+74951067022"><span data-calltracking-text="">+7 (495) 106-70-22</span></a>
+<div class="mmenu__msg">
+<a href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="24" loading="lazy" src="assets/logos/telegram.svg" width="24"/>Telegram</a>
+<a href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="24" loading="lazy" src="assets/logos/max-128.webp" width="24"/>MAX</a>
+</div>
 <a class="btn btn--accent" href="#calculator">Рассчитать стоимость</a>
 </div>
 </div>
@@ -127,6 +193,7 @@
 <p class="eyebrow">Выставочные стенды под ключ · Москва и регионы</p>
 <h1 id="hero-title">Эксклюзивные выставочные стенды <span class="hl">под ваш бюджет</span></h1>
 <div class="hero3__from hero3__from--text">
+<p class="hero3__proof">Реализовали <b>5100&nbsp;проектов</b> за&nbsp;<b>25&nbsp;лет</b></p>
 <p class="hero3__from-d">Дизайн, производство, монтаж и&nbsp;демонтаж — в&nbsp;одних руках</p>
 </div>
 <p class="hero3__lead">Сделаем стенд, который выделит вас среди конкурентов и&nbsp;запомнится посетителям. Или подстроимся под бюджет, если задача — достойно показать продукцию.</p>
@@ -647,8 +714,8 @@
 <li class="venue"><span class="venue__logo"><img src="assets/v5/venues/expograd-yug.png" alt="Логотип ВКК «Экспоград Юг»" loading="lazy" decoding="async"/></span><span class="venue__st venue__st--ok">Аккредитованы</span><p class="venue__city">Краснодар</p><h3>ВКК «Экспоград Юг»</h3></li>
 <li class="venue"><span class="venue__logo"><img src="assets/v5/venues/ekb-expo.svg" alt="Логотип МВЦ «Екатеринбург-ЭКСПО»" loading="lazy" decoding="async"/></span><span class="venue__st venue__st--ok">Аккредитованы</span><p class="venue__city">Екатеринбург</p><h3>Екатеринбург-ЭКСПО</h3></li>
 <li class="venue"><span class="venue__logo"><img src="assets/v5/venues/timiryazev.svg" alt="Логотип «Тимирязев Центра»" loading="lazy" decoding="async"/></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Москва</p><h3>«Тимирязев Центр»</h3></li>
-<li class="venue"><span aria-hidden="true" class="venue__logo venue__logo--none"><svg viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 12 24 3l20 9"/><path d="M4 12h40M7 29h34M6 31h36"/><path d="M10 14v13M17 14v13M24 14v13M31 14v13M38 14v13"/></svg></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Москва</p><h3>Гостиный двор</h3></li>
-<li class="venue"><span class="venue__logo"><img src="assets/v5/venues/patriot.png" alt="Логотип парка «Патриот»" loading="lazy" decoding="async"/></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Кубинка</p><h3>КВЦ «Патриот Экспо»</h3></li>
+<li class="venue"><span class="venue__logo"><img src="assets/v5/venues/gostiny-dvor.png" alt="Логотип ТД «Шатёр» — управляющей компании атриума «Гостиного двора»" width="142" height="143" loading="lazy" decoding="async"/></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Москва</p><h3>Гостиный двор</h3></li>
+<li class="venue"><span class="venue__logo"><img src="assets/v5/venues/patriot-expo.png" alt="Логотип КВЦ «Патриот Экспо»" width="130" height="124" loading="lazy" decoding="async"/></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Кубинка</p><h3>КВЦ «Патриот Экспо»</h3></li>
 <li class="venue"><span class="venue__logo"><img src="assets/v5/venues/sirius.svg" alt="Логотип «Сириус»" loading="lazy" decoding="async"/></span><span class="venue__st">Знаем площадку</span><p class="venue__city">Сочи</p><h3>Парк науки и&nbsp;искусства «Сириус»</h3></li>
 <li class="venue venue--more"><h3>Ваша площадка не&nbsp;в&nbsp;списке?</h3><p>Работаем по&nbsp;всей России и&nbsp;в&nbsp;СНГ. Пришлите руководство участника — проверим требования.</p><a class="link-arrow" href="#quiz">Обсудить выставку <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a></li>
 </ul>
@@ -743,7 +810,7 @@
 <div class="process-foot">
 <p>Для начала достаточно плана площадки или размеров.</p>
 <a class="btn btn--accent" data-open-quiz="process" href="#quiz">Обсудить проект <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
-<a class="link-arrow" href="brief-card.html" rel="noopener" target="_blank">Открыть бриф для печати <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
+<a class="link-arrow" data-file="brief_card" href="brief-card.html" rel="noopener" target="_blank">Открыть бриф для печати <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
 </div>
 </div>
 </section>
@@ -922,7 +989,7 @@
 <div class="faq__aside">
 <p class="tag">Ответы</p>
 <h2 class="sec__title" id="faq-title">Вопросы и&nbsp;ответы</h2>
-<p>Не нашли ответ? Позвоните по&nbsp;телефону <a data-goal="click_phone" href="tel:+74951067022"><b>+7&nbsp;(495)&nbsp;106-70-22</b></a> или напишите на&nbsp;<a href="mailto:manager@crvu.ru"><b>manager@crvu.ru</b></a>.</p>
+<p>Не нашли ответ? Позвоните по&nbsp;телефону <a data-calltracking="sales" href="tel:+74951067022"><b data-calltracking-text="">+7&nbsp;(495)&nbsp;106-70-22</b></a> или напишите на&nbsp;<a href="mailto:manager@crvu.ru"><b>manager@crvu.ru</b></a>.</p>
 </div>
 <div class="acc" id="acc">
 <div class="acc__item is-open">
@@ -989,10 +1056,10 @@
 <div class="nq__con">
 <p class="nq__h">Удобнее связаться сразу?</p>
 <p class="nq__links">
-<a class="nq__tel" data-goal="click_phone" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg>+7 (495) 106-70-22</a>
+<a class="nq__tel" data-calltracking="sales" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg><span data-calltracking-text="">+7 (495) 106-70-22</span></a>
 <a class="nq__mail" href="mailto:manager@crvu.ru"><svg aria-hidden="true" class="ico"><use href="#i-mail"></use></svg>manager@crvu.ru</a>
-<a class="nq__msg" data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a>
-<a class="nq__msg" data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max.svg" width="20"/>MAX</a>
+<a class="nq__msg" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a>
+<a class="nq__msg" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max-128.webp" width="20"/>MAX</a>
 </p>
 </div>
 <div class="nq__box">
@@ -1040,15 +1107,21 @@
 <p class="quiz__err nq__full" hidden="" id="qErr" role="alert"></p>
 <button class="btn btn--accent nq__btn nq__full" id="qSubmit" type="submit">Отправить заявку <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
 </div>
-<p class="preview-form-note nq__note">Предпросмотр: формы проверяют данные, но&nbsp;не&nbsp;отправляют заявки в&nbsp;ЦРВУ.</p>
 </form>
 <div class="quiz__ok nq__card" hidden="" id="quizOk" tabindex="-1">
 <p class="quiz__step">Заявка</p>
-<h3 id="quizOkTitle">Черновик готов</h3>
+<h3 id="quizOkTitle">Заявка передана</h3>
 <p id="quizOkText"></p>
 <dl class="quiz__sum" id="quizSum"></dl>
+<div class="nq__send" hidden="" id="quizOkSend">
+<p class="nq__h">Отправить план площадки</p>
+<p class="nq__send-l">
+<a class="nq__msg" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a>
+<a class="nq__msg" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max-128.webp" width="20"/>MAX</a>
+<a class="nq__mail" href="mailto:manager@crvu.ru"><svg aria-hidden="true" class="ico"><use href="#i-mail"></use></svg>manager@crvu.ru</a>
+</p>
+</div>
 <p><button class="btn btn--soft btn--sm" id="quizAgain" type="button">Заполнить ещё одну заявку</button></p>
-<p class="preview-result">В&nbsp;этой версии заявка не&nbsp;отправлена. Вы проверили заполнение формы; реальные обращения принимаются по&nbsp;телефону или в&nbsp;мессенджере.</p><button class="btn btn--soft" data-download-draft="" type="button">Скачать черновик заявки</button>
 </div>
 </div>
 </div>
@@ -1056,11 +1129,11 @@
 </section>
 </main>
 <!-- ============ ПОДВАЛ ============ -->
-<footer class="ftr ftr--light">
+<footer class="ftr ftr--dark">
 <div class="container">
 <div class="ftr__top">
 <div class="ftr__brand">
-<img alt="ЦРВУ" class="ftr__logo" height="44" loading="lazy" src="assets/logos/crvu-logo-header.webp" width="205"/>
+<img alt="ЦРВУ" class="ftr__logo" height="44" loading="lazy" src="assets/logos/crvu-logo-light.webp" width="205"/>
 <p class="ftr__line ftr__desc">Выставочные стенды под&nbsp;ключ в&nbsp;Москве и&nbsp;регионах.</p>
 <p class="ftr__line ftr__addr">123007, Москва, 2-й Хорошёвский проезд, д. 7, корп. 1</p>
 </div>
@@ -1077,9 +1150,9 @@
 <div class="ftr__col">
 <p class="ftr__h">Контакты</p>
 <div class="ftr__nav ftr__con">
-<a class="ftr__tel" data-goal="click_phone" href="tel:+74951067022">+7 (495) 106-70-22</a>
+<a class="ftr__tel" data-calltracking="sales" href="tel:+74951067022"><span data-calltracking-text="">+7 (495) 106-70-22</span></a>
 <a href="mailto:manager@crvu.ru">manager@crvu.ru</a>
-<span class="ftr__msg"><a data-goal="click_messenger" href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/telegram.svg" width="22"/>Telegram</a><a data-goal="click_messenger" href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/max.svg" width="22"/>MAX</a></span>
+<span class="ftr__msg"><a href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/telegram.svg" width="22"/>Telegram</a><a href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="22" loading="lazy" src="assets/logos/max-128.webp" width="22"/>MAX</a></span>
 </div>
 </div>
 <div class="ftr__col ftr__rq">
@@ -1110,7 +1183,7 @@
 <div class="ftr__bot">
 <div class="ftr__botl">
 <p class="ftr__op">Оператор персональных данных: ООО «ЦРВУ», ИНН&nbsp;7714472410, согласно <a href="https://crvu.ru/policy" rel="noopener" target="_blank">действующей политике</a>.</p>
-<p>Фотографии — реализованные проекты ЦРВУ. Вариант V6-20112026: заявки и аналитика отключены. Изображение на первом экране — визуализация.</p>
+<p>Фотографии — реализованные проекты ЦРВУ. Изображение на&nbsp;первом экране — визуализация.</p>
 </div>
 <a href="#top">Наверх</a>
 </div>
@@ -1119,9 +1192,114 @@
 <!-- мобильная липкая панель и кнопка «Наверх» -->
 <div class="mbar" id="mbar">
 <a class="btn btn--accent" href="#calculator">Рассчитать стоимость</a>
-<a class="btn btn--line" data-goal="click_phone" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg> Позвонить</a>
+<a class="btn btn--line" data-calltracking="sales" href="tel:+74951067022"><svg aria-hidden="true" class="ico"><use href="#i-phone"></use></svg> Позвонить</a>
 </div>
 <a aria-label="Наверх" class="totop" href="#top" id="toTop"><svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></a>
+<!-- кнопки при прокрутке (компьютер): 3D-визуализация и портфолио -->
+<div aria-label="3D-визуализация и проекты" class="dsa" hidden="" id="dsa" role="group">
+<button aria-haspopup="dialog" class="dsa__btn dsa__btn--accent" data-open-3d="" type="button">3D визуализация бесплатно <svg aria-hidden="true" class="ico"><use href="#i-ne"></use></svg></button>
+<button aria-haspopup="dialog" class="dsa__btn" data-open-portfolio="" type="button">Посмотрите наши проекты <svg aria-hidden="true" class="ico"><use href="#i-ne"></use></svg></button>
+</div>
+<!-- окно «3D-визуализация бесплатно» -->
+<dialog aria-labelledby="d3Title" class="dlg mdl mdl--3d" data-placement="modal_3d" id="d3Dlg">
+<button aria-label="Закрыть" class="dlg__x" data-close="" type="button"><svg aria-hidden="true" class="ico"><use href="#i-close"></use></svg></button>
+<div class="mdl__grid">
+<figure class="mdl__fig">
+<img alt="3D-визуализация стенда Intek для выставки «Металлообработка 2026»" decoding="async" height="1123" loading="lazy" sizes="(min-width: 900px) 460px, 100vw" src="assets/real/thumbs/intek-metalworking-2026-render-1680-960.webp" srcset="assets/real/thumbs/intek-metalworking-2026-render-1680-640.webp 640w, assets/real/thumbs/intek-metalworking-2026-render-1680-960.webp 960w, assets/real/intek-metalworking-2026-render-1680.webp 1680w" width="1680"/>
+<figcaption>3D-проект стенда Intek · «Металлообработка 2026»</figcaption>
+</figure>
+<div class="mdl__body">
+<div class="mdl__view" data-view="form">
+<p class="tag">Бесплатно</p>
+<h2 class="mdl__t" id="d3Title">Оставьте заявку и&nbsp;получите <span class="nowrap">3D-визуализацию</span> бесплатно</h2>
+<p class="mdl__lead">Укажите номер телефона, чтобы мы забронировали <span class="nowrap">за&nbsp;вами</span> бонус.</p>
+<form class="mdl__form" id="d3Form" novalidate="">
+<div class="field">
+<label for="d3Name">Имя</label>
+<input aria-describedby="d3Name-e" aria-invalid="false" autocomplete="name" class="input" id="d3Name" maxlength="100" name="name" type="text"/>
+<p class="err" hidden="" id="d3Name-e" role="alert"></p>
+</div>
+<div class="field">
+<label for="d3Phone">Телефон <span aria-hidden="true" class="mdl__req">*</span></label>
+<input aria-describedby="d3Phone-e" aria-invalid="false" aria-required="true" autocomplete="tel" class="input" id="d3Phone" inputmode="tel" maxlength="22" name="phone" placeholder="+7 (999) 000-00-00" type="tel"/>
+<p class="err" hidden="" id="d3Phone-e" role="alert"></p>
+</div>
+<div class="field">
+<label class="check"><input aria-describedby="d3Consent-e" checked="" id="d3Consent" name="consent" type="checkbox"/><span>Согласен на&nbsp;обработку персональных данных и&nbsp;ознакомлен с&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
+<p class="err" hidden="" id="d3Consent-e" role="alert"></p>
+</div>
+<div aria-hidden="true" class="hp"><label>Сайт<input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div>
+<p class="quiz__err" hidden="" id="d3Err" role="alert"></p>
+<button class="btn btn--accent mdl__btn" type="submit">Отправить</button>
+</form>
+<p class="mdl__msg"><span>Удобнее в&nbsp;мессенджере?</span><a href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a><a href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max-128.webp" width="20"/>MAX</a></p>
+</div>
+<div class="mdl__view mdl__ok" data-view="ok" hidden="" tabindex="-1">
+<span aria-hidden="true" class="mdl__okico"><svg class="ico"><use href="#i-check"></use></svg></span>
+<h2 class="mdl__t">Заявка принята!</h2>
+<p class="mdl__lead">Спасибо! Свяжемся с&nbsp;вами, чтобы обсудить 3D-визуализацию стенда.</p>
+<button class="btn btn--accent" data-close="" type="button">Понятно, закрыть</button>
+</div>
+</div>
+</div>
+</dialog>
+<!-- окно с бонусами при попытке уйти со страницы -->
+<dialog aria-labelledby="exTitle" class="dlg mdl mdl--exit" data-placement="exit_popup" id="exitDlg">
+<button aria-label="Закрыть бонусное предложение" class="dlg__x" data-close="" type="button"><svg aria-hidden="true" class="ico"><use href="#i-close"></use></svg></button>
+<div class="mdl__view" data-view="form">
+<div class="mdl__top">
+<p class="tag">Бонусы к&nbsp;договору</p>
+<h2 autofocus="" class="mdl__t" id="exTitle" tabindex="-1">Заключите договор <span class="nowrap" data-exit-until="">до&nbsp;30&nbsp;ноября</span> — добавим 4&nbsp;бонуса без&nbsp;доплаты</h2>
+<ul class="bonus" role="list">
+<li><span aria-hidden="true" class="bonus__ico"><svg class="ico"><use href="#i-flower"></use></svg></span><p><b>Оформим переговорную живыми цветами</b><span class="bonus__d">Подберём композиции под оформление стенда, чтобы пространство для встреч выглядело завершённым и&nbsp;располагало к&nbsp;разговору.</span></p></li>
+<li><span aria-hidden="true" class="bonus__ico"><svg class="ico"><use href="#i-camera"></use></svg></span><p><b>Снимем стенд во&nbsp;время выставки</b><span class="bonus__d">Подготовим фотографии готового проекта с&nbsp;посетителями и&nbsp;командой — для отчётов, сайта и&nbsp;социальных сетей.</span></p></li>
+<li><span aria-hidden="true" class="bonus__ico"><svg class="ico"><use href="#i-cup"></use></svg></span><p><b>Установим кофемашину на&nbsp;все дни выставки</b><span class="bonus__d">Вы сможете предложить гостям свежий кофе прямо на&nbsp;стенде и&nbsp;продолжить разговор в&nbsp;более комфортной обстановке.</span></p></li>
+<li><span aria-hidden="true" class="bonus__ico"><svg class="ico"><use href="#i-bean"></use></svg></span><p><b>Обеспечим запас зернового кофе</b><span class="bonus__d">Рассчитаем необходимое количество на&nbsp;все дни мероприятия, чтобы вам не&nbsp;пришлось заниматься закупкой и&nbsp;доставкой.</span></p></li>
+</ul>
+</div>
+<div class="mdl__bottom">
+<form class="mdl__form mdl__form--row" id="exForm" novalidate="">
+<div class="field mdl__phone">
+<label class="sr-only" for="exPhone">Телефон</label>
+<input aria-describedby="exPhone-e" aria-invalid="false" autocomplete="tel" class="input" id="exPhone" inputmode="tel" maxlength="22" name="phone" placeholder="+7 (999) 000-00-00" type="tel"/>
+<p class="err" hidden="" id="exPhone-e" role="alert"></p>
+</div>
+<button class="btn btn--accent mdl__btn" type="submit">Забронировать бонусы</button>
+<div class="field mdl__full">
+<label class="check"><input aria-describedby="exConsent-e" checked="" id="exConsent" name="consent" type="checkbox"/><span>Согласен на&nbsp;обработку персональных данных и&nbsp;ознакомлен с&nbsp;<a href="https://crvu.ru/policy" rel="noopener" target="_blank">политикой конфиденциальности</a>.</span></label>
+<p class="err" hidden="" id="exConsent-e" role="alert"></p>
+</div>
+<div aria-hidden="true" class="hp"><label>Сайт<input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div>
+<p class="quiz__err mdl__full" hidden="" id="exErr" role="alert"></p>
+</form>
+<p class="mdl__msg"><span>Или напишите нам:</span><a href="https://t.me/Gleb_CRVU" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/telegram.svg" width="20"/>Telegram</a><a href="https://max.ru/u/f9LHodD0cOKk8tgSKELYGCPFay2Q-cz4WkgfuM4f9D5LfGBGwmN4_UsgbQ0" rel="noopener" target="_blank"><img alt="" height="20" loading="lazy" src="assets/logos/max-128.webp" width="20"/>MAX</a></p>
+</div>
+</div>
+<div class="mdl__view mdl__ok" data-view="ok" hidden="" tabindex="-1">
+<span aria-hidden="true" class="mdl__okico"><svg class="ico"><use href="#i-check"></use></svg></span>
+<h2 class="mdl__t">Заявка на&nbsp;бонусы принята!</h2>
+<p class="mdl__lead">Наш менеджер свяжется с&nbsp;вами в&nbsp;ближайшее время для обсуждения деталей проекта.</p>
+<button class="btn btn--accent" data-close="" type="button">Вернуться к&nbsp;сайту</button>
+</div>
+</dialog>
+<!-- портфолио: все реализованные проекты (собирается из блока «Кейсы») -->
+<dialog aria-labelledby="pfTitle" class="dlg pf" data-placement="portfolio" id="pfDlg">
+<div class="pf__in">
+<header class="pf__head">
+<div>
+<p class="tag">Портфолио</p>
+<h2 class="pf__t" id="pfTitle">Строим стенды на&nbsp;главных выставках страны из&nbsp;года в&nbsp;год</h2>
+<p class="pf__sub" id="pfSub">Нажмите на&nbsp;проект, чтобы открыть фотографии.</p>
+</div>
+<button aria-label="Закрыть портфолио" class="dlg__x pf__x" data-close="" type="button"><svg aria-hidden="true" class="ico"><use href="#i-close"></use></svg></button>
+</header>
+<div class="pf__grid" id="pfGrid"></div>
+<div class="pf__foot">
+<p>Нужен похожий стенд? Рассчитаем стоимость и&nbsp;сроки под&nbsp;вашу выставку.</p>
+<button class="btn btn--accent" data-pf-quiz="" type="button">Обсудить свой стенд <svg aria-hidden="true" class="ico"><use href="#i-arrow"></use></svg></button>
+</div>
+</div>
+</dialog>
 <!-- лайтбокс кейсов -->
 <dialog aria-label="Галерея кейса" class="dlg lb" id="lbDlg">
 <button aria-label="Закрыть галерею" class="dlg__x" data-close="" type="button"><svg aria-hidden="true" class="ico"><use href="#i-close"></use></svg></button>
@@ -1141,16 +1319,17 @@
 <div class="vdlg__stage"><div class="vdlg__frame" id="vFrame"></div></div>
 <div class="vdlg__bar"><b id="vTitle"></b><a href="https://vimeo.com/" id="vLink" rel="noopener" target="_blank">Открыть на Vimeo <svg aria-hidden="true" class="ico"><use href="#i-ext"></use></svg></a></div>
 </dialog>
-<script defer="" src="assets/js/config.js"></script>
 <script defer="" src="assets/js/data.js"></script>
 <script defer="" src="assets/js/core.js"></script>
+<script defer="" src="assets/js/integrations.js"></script>
 <script defer="" src="assets/js/combobox.js"></script>
 <script defer="" src="assets/js/widgets.js"></script>
-<script defer src="assets/js/v5.js"></script>
+<script defer="" src="assets/js/v5.js"></script>
 <script defer="" src="assets/js/pairs.js"></script>
 <script defer="" src="assets/js/tools.js"></script>
 <script defer="" src="assets/js/calc-compact.js"></script>
 <script defer="" src="assets/js/quiz.js"></script>
 <script defer="" src="assets/js/revision.js"></script>
+<script defer="" src="assets/js/site.js"></script>
 </body>
 </html>

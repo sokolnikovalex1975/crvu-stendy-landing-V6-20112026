@@ -126,6 +126,7 @@
       img.src = s.src;
       img.width = im.w; img.height = im.h;
       img.alt = im.alt;
+      dlg.classList.toggle('lb--small', im.w < 1000);
       title.textContent = st.title;
       meta.textContent = st.meta;
       var multi = st.list.length > 1;

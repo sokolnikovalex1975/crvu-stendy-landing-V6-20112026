@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ЦРВУ — вариант V1-29102026. Светлая тема поверх v2.
+   ЦРВУ — светлая тема.
    Концепция «Светлый шоурум»: тёплый белый, мягкие скругления, оранжевый акцент ЦРВУ.
    ========================================================================== */
 
@@ -61,7 +61,7 @@ body { background: var(--paper); color: var(--ink); }
 .crop::before, .crop::after { display: none; }
 .sec--grid::before { display: none; }
 
-/* ---------- плашка превью ---------- */
+/* ---------- служебная плашка (не используется) ---------- */
 .preview-bar {
   background: var(--ink);
   color: #ffd9c4;
@@ -1165,7 +1165,7 @@ body { background: var(--paper); color: var(--ink); }
 /* ---------- появление ---------- */
 .js .rv { transition-duration: 0.7s; }
 
-/* ==================== правки V1-29102026: переносы, легенды, поле площади ==================== */
+/* ==================== переносы, легенды, поле площади ==================== */
 /* на широких экранах — без автоматических переносов слов */
 @media (min-width: 720px) {
   body { hyphens: manual; -webkit-hyphens: manual; }
@@ -1204,7 +1204,7 @@ fieldset.cstep > legend.cstep__h { float: left; }
 /* мобильное меню: нижняя панель не просвечивает под меню */
 body.menu-open .mbar { transform: translateY(120%) !important; }
 
-/* ==================== HERO V2: фото на весь первый экран с градиентом ==================== */
+/* ==================== первый экран: фото на весь экран с градиентом ==================== */
 .hero4 {
   position: relative;
   isolation: isolate;
@@ -1309,7 +1309,7 @@ body.menu-open .mbar { transform: translateY(120%) !important; }
   .hero4__cap b { font-size: 0.8125rem; }
 }
 
-/* ==================== HERO V3: сгенерированная визуализация стенда ==================== */
+/* ==================== первый экран: визуализация стенда ==================== */
 .hero4__bg img { object-position: 8% 50%; }
 @media (max-width: 999px) and (orientation: portrait) { .hero4__bg img { object-position: 50% 0%; } }
 @media (max-width: 999px) and (orientation: landscape) { .hero4__bg img { object-position: 30% 50%; } }
@@ -1321,12 +1321,12 @@ body.menu-open .mbar { transform: translateY(120%) !important; }
   }
 }
 
-/* ==================== HERO V4: реальное фото стенда ЭКРА (stendart.ru, 1920×1280) ==================== */
+/* ==================== первый экран: фото стенда ==================== */
 .hero4__bg img { object-position: 78% 40%; }
 @media (max-width: 999px) and (orientation: portrait) { .hero4__bg img { object-position: 90% 12%; } }
 @media (max-width: 999px) and (orientation: landscape) { .hero4__bg img { object-position: 70% 40%; } }
 
-/* ==================== V4: реквизиты ==================== */
+/* ==================== реквизиты ==================== */
 .req { margin-top: clamp(1.5rem, 3vw, 2.25rem); border: 1px solid var(--line, #e3e1dc); border-radius: 16px; background: #fff; }
 .req > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.25rem; }
 .req > summary::-webkit-details-marker { display: none; }

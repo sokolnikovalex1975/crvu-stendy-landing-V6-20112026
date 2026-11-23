@@ -6,7 +6,6 @@
   'use strict';
 
   var CRVU = (w.CRVU = w.CRVU || {});
-  var METRIKA_ID = 103630235;
   var NBSP = '\u00a0';
 
   var mq = w.matchMedia ? w.matchMedia('(prefers-reduced-motion: reduce)') : null;
@@ -18,17 +17,13 @@
   CRVU.$$ = $$;
 
   /* ------------------------------------------------------------------ цели Метрики */
-  /* Счётчик Метрики НЕ подключён на странице (см. README). Обёртка безопасна: если ym нет, ничего не происходит.
-     Список целей: quiz_start, quiz_step_N, quiz_submit, upload_plan, calc_start, calc_result, calc_pdf,
-     planner_select, planner_ics, doc_brief, doc_procurement, case_open, video_play, slider_use,
-     click_phone, click_messenger, scroll_75 (раздел 12.1 стратегии) + дополнительные faq_open, swap_click, production_view. */
+  /* Цели отправляются через CRVU.goal (integrations.js) и только на рабочем адресе stendy.crvu.ru.
+     Основные цели прежней страницы: phone_click, email_click, messenger_click, lead_submit_success, file_download.
+     Дополнительные: quiz_start, upload_plan, calc_start, calc_result, calc_pdf, planner_select, planner_ics,
+     doc_brief, case_open, video_play, slider_use, scroll_75, faq_open, swap_click, production_view. */
   var fired = {};
   CRVU.track = function (goal, params) {
-    try {
-      if (w.CRVU_CONFIG && w.CRVU_CONFIG.analyticsEnabled && w.CRVU_ANALYTICS_CONSENT && typeof w.ym === 'function') {
-        if (params) { w.ym(METRIKA_ID, 'reachGoal', goal, params); } else { w.ym(METRIKA_ID, 'reachGoal', goal); }
-      }
-    } catch (e) { /* аналитика не должна ломать страницу */ }
+    try { if (typeof CRVU.goal === 'function') { CRVU.goal(goal, params); } } catch (e) { /* аналитика не должна ломать страницу */ }
   };
   CRVU.trackOnce = function (goal, params) {
     if (fired[goal]) { return; }
@@ -168,23 +163,7 @@
     form.addEventListener('change', clear);
   };
 
-  /* Isolated preview. Live delivery requires explicit production configuration. */
-  CRVU.lastDraft=null;
   CRVU.withTimeout=function(p,ms){return new Promise(function(resolve,reject){var id=setTimeout(function(){reject(new Error('timeout'));},ms||15000);p.then(function(v){clearTimeout(id);resolve(v);},function(e){clearTimeout(id);reject(e);});});};
-  CRVU.submitLead=function(payload,kind){
-    var cfg=w.CRVU_CONFIG||{};
-    if(cfg.preview!==false){
-      CRVU.lastDraft={kind:kind,data:payload.data||payload,plan:payload.file?{name:payload.file.name,size:payload.file.size}:null,notSent:true};
-      return Promise.resolve({ok:true,preview:true});
-    }
-    if(!cfg.leadEndpoint)return Promise.reject(new Error('not-configured'));
-    var url=new URL(cfg.leadEndpoint,w.location.href);
-    if(url.origin!==w.location.origin)return Promise.reject(new Error('same-origin-endpoint-required'));
-    var ac=new AbortController(),timer=setTimeout(function(){ac.abort();},15000),fd=new FormData();
-    fd.append('payload',JSON.stringify(payload.data));
-    if(payload.file)fd.append('plan',payload.file,payload.file.name);
-    return fetch(url.href,{method:'POST',body:fd,signal:ac.signal,credentials:'same-origin'}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(v){if(!v||v.ok!==true)throw new Error('invalid-response');return v;}).finally(function(){clearTimeout(timer);});
-  };
   CRVU.utm = function () {
     var out = {}, p = new URLSearchParams(w.location.search);
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'yclid', 'gclid'].forEach(function (k) { if (p.get(k)) { out[k] = p.get(k); } });

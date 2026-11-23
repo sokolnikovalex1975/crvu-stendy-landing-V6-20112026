@@ -1,4 +1,4 @@
-/* ЦРВУ V5 — инфографика, тематические значки и компактная шапка */
+/* ЦРВУ — инфографика, тематические значки и компактная шапка */
 .vi, .eqi, .ti, .dt, .xi { display: inline-grid; place-items: center; flex: none; }
 .vi .ico, .eqi .ico, .ti .ico, .dt .ico, .xi .ico { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 

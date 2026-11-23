@@ -1,6 +1,6 @@
 /*!
- * ЦРВУ — заявка (одна форма: имя, телефон, выставка и план площадки; параметры приходят из калькулятора), форма для закупок и тендеров.
- * Отправка — заглушка CRVU.submitLead (core.js): подключите CRM или почту manager@crvu.ru, см. README.
+ * ЦРВУ — заявка (одна форма: имя, телефон, выставка и план площадки; параметры приходят из калькулятора),
+ * форма для закупок и тендеров. Отправка — CRVU.sendLead (integrations.js) в /api/v1/leads.
  */
 (function (w, d) {
   'use strict';
@@ -15,27 +15,14 @@
     email: 'Проверьте email: похоже, в адресе ошибка.',
     consent: 'Поставьте галочку согласия, чтобы отправить заявку.',
     fileType: 'Этот формат не подходит. Загрузите PDF, DWG, JPG или PNG.',
-    fileSize: 'Файл больше 25 МБ. Сожмите его или пришлите ссылку в комментарии.',
-    fail: 'Не удалось отправить заявку. Попробуйте ещё раз или позвоните ' + PHONE + '.',
-    offline: 'Нет соединения. Проверьте интернет и повторите отправку. Введённые данные сохранены.',
-    slow: 'Сервер отвечает дольше обычного. Подождите минуту или позвоните ' + PHONE + '.'
+    fileSize: 'Файл больше 25 МБ. Сожмите его или пришлите ссылку менеджеру в мессенджер.'
   };
-  var TIMEOUT = 15000;
+  var SOURCES = { direct: 'форма заявки', calculator: 'калькулятор', planner: 'календарь выставок', 'case': 'кейс «Обсудить похожий стенд»', lightbox: 'фотографии кейса', process: 'блок «Этапы»', engineering: 'блок «Инженерия»', portfolio: 'портфолио' };
 
   CRVU.maskPhone($('#qPhone'));
   CRVU.maskPhone($('#prPhone'));
 
-  function withTimeout(promise) {
-    return new Promise(function (resolve, reject) {
-      var t = setTimeout(function () { reject(new Error('timeout')); }, TIMEOUT);
-      promise.then(function (v) { clearTimeout(t); resolve(v); }, function (e) { clearTimeout(t); reject(e); });
-    });
-  }
-  function failText(err) {
-    if (w.navigator && w.navigator.onLine === false) { return MSG.offline; }
-    if (err && err.message === 'timeout') { return MSG.slow; }
-    return MSG.fail;
-  }
+  function failText(err) { return CRVU.leadMessage ? CRVU.leadMessage(err) : 'Не удалось отправить заявку. Позвоните ' + PHONE + '.'; }
   function moscowMinutes() {
     try {
       var parts = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
@@ -62,7 +49,7 @@
   function field(form, name) { return form.querySelector('[name="' + name + '"]'); }
   function val(el) { return el ? el.value.trim() : ''; }
 
-  /* ================================================================== заявка: одна форма (V6-20112026, вариант А) */
+  /* ================================================================== заявка: одна форма */
   var form = $('#quizForm');
   if (form) {
     var submit = $('#qSubmit'), okBox = $('#quizOk');
@@ -199,14 +186,30 @@
     }
 
     function okText(hasPlan) {
-      if (w.CRVU_CONFIG.preview) { return 'Черновик подготовлен в вашем браузере. Заявка и файл НЕ отправлены в ЦРВУ.'; }
       return hasPlan
-        ? 'Заявка принята. Менеджер изучит план площадки и свяжется с вами.'
-        : 'Заявка принята. Менеджер свяжется с вами, уточнит детали и запросит план площадки.';
+        ? 'Менеджер свяжется с вами в рабочее время. План площадки отправьте удобным способом — так менеджер увидит его вместе с заявкой.'
+        : 'Менеджер свяжется с вами в рабочее время, уточнит детали и запросит план площадки.';
+    }
+    /* текст заявки для менеджера: всё, что посетитель выбрал на странице */
+    function leadText(data) {
+      var p = [];
+      if (data.expo.name) { p.push('Выставка: ' + data.expo.name + (data.expo.dates ? ' (' + data.expo.dates + ')' : (data.expo.openDate ? ' (открытие ' + data.expo.openDate + ')' : ''))); }
+      if (data.expo.venue && data.expo.venue !== 'Другая площадка') { p.push('Площадка: ' + data.expo.venue); }
+      if (data.stand.area) { p.push('Площадь: ' + CRVU.fmtArea(data.stand.area) + ' м²'); }
+      if (data.stand.typeLabel) { p.push('Тип стенда: ' + data.stand.typeLabel); }
+      if (data.stand.levelLabel) { p.push('Уровень: ' + data.stand.levelLabel); }
+      if (data.stand.extras && data.stand.extras.length) { p.push('Опции: ' + data.stand.extras.join(', ')); }
+      if (calcRef) { p.push('Ориентир калькулятора: ' + calcRange(calcRef)); }
+      if (data.comment) { p.push('Комментарий: ' + data.comment); }
+      if (data.plan) { p.push('План площадки: ' + data.plan.name + ' — клиент пришлёт файл в мессенджер или на почту'); }
+      p.push('Откуда заявка: ' + (SOURCES[data.source] || data.source || 'форма заявки'));
+      return p.join('; ').replace(/\u00a0/g, ' ');
     }
     function showOk(data) {
-      $('#quizOkTitle').textContent = (w.CRVU_CONFIG.preview ? 'Черновик готов' : 'Заявка передана');
+      $('#quizOkTitle').textContent = 'Заявка передана';
       $('#quizOkText').textContent = nb(okText(!!file));
+      var send = $('#quizOkSend');
+      if (send) { send.hidden = !file; }
       var rows = [];
       if (data.stand.area) { rows.push(['Площадь', CRVU.fmtArea(data.stand.area) + ' м²']); }
       if (data.stand.typeLabel) { rows.push(['Тип стенда', data.stand.typeLabel]); }
@@ -232,12 +235,15 @@
       if (!validate()) { return; }
       err.hidden = true;
       var data = collect();
-      if (hp.value) { showOk(data); return; }   /* поле-ловушка для ботов заполнено: молча «успех» без отправки */
       busy = true;
       submit.disabled = true;
       submit.setAttribute('aria-busy', 'true');
-      submit.textContent = w.CRVU_CONFIG.preview ? 'Готовим черновик…' : 'Отправляем…';
-      withTimeout(CRVU.submitLead({ data: data, file: file }, 'quiz'))
+      submit.textContent = 'Отправляем…';
+      CRVU.sendLead('inline_estimate', {
+        contact: { name: data.contact.name, phone: phoneI.value.trim() ? CRVU.formatPhone(CRVU.phoneDigits(phoneI.value)) : '' },
+        details: { exhibition_or_area: leadText(data) },
+        website: hp.value
+      })
         .then(function () {
           CRVU.track('quiz_submit', { area: data.stand.area, level: data.stand.level || 'none' });
           showOk(data);
@@ -325,13 +331,18 @@
         phone: pPhone.value.trim()?'+7'+CRVU.phoneDigits(pPhone.value):'', procedure: val($('#prProc')), consent: true
       };
       function done() {
-        pOk.textContent = nb((w.CRVU_CONFIG.preview?'Черновик готов. Запрос НЕ отправлен в ЦРВУ.':'Запрос передан. Пакет документов подготовим для указанного email.'));
+        pOk.textContent = nb('Запрос передан. Пакет документов подготовим и отправим на ' + data.email + '.');
         pOk.hidden = false;
-        if(!w.CRVU_CONFIG.preview)pf.reset();
+        pf.reset();
       }
-      if (hpEl && hpEl.value) { done(); return; }
-      pBusy = true; pBtn.disabled = true; pBtn.textContent=w.CRVU_CONFIG.preview?'Готовим черновик…':'Отправляем…';
-      withTimeout(CRVU.submitLead({ data: data }, 'procurement'))
+      var text = ['Запрос комплекта документов для закупки', 'Компания: ' + data.company, 'Контактное лицо: ' + data.name + (data.role ? ' (' + data.role + ')' : '')];
+      if (data.procedure) { text.push('Закупка: ' + data.procedure); }
+      pBusy = true; pBtn.disabled = true; pBtn.textContent = 'Отправляем…';
+      CRVU.sendLead('inline_estimate', {
+        contact: { name: data.name + ', ' + data.company, phone: data.phone ? CRVU.formatPhone(CRVU.phoneDigits(pPhone.value)) : '', email: data.email },
+        details: { exhibition_or_area: text.join('; ') },
+        website: hpEl ? hpEl.value : ''
+      })
         .then(function () { CRVU.track('doc_procurement'); done(); })
         .catch(function (er) { pErr.textContent = nb(failText(er)); pErr.hidden = false; })
         .then(function () { pBusy = false; pBtn.disabled = false; pBtn.innerHTML = pBtnHtml; });
