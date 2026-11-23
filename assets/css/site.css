@@ -88,7 +88,11 @@
 @media (max-width: 640px) {
   .hero4 .hero3__from { margin-top: 0.8rem; }
   .hero4 .hero3__from--text { gap: 0.2rem; padding-left: 0.8rem; }
-  .hero3__proof { font-size: 1.1875rem; }
+  .hero3__proof { font-size: min(1.1875rem, 4.55vw); }
+}
+/* высокие экраны телефонов: картинка чуть выше, чтобы текст не заходил на людей у стенда */
+@media (max-width: 640px) and (min-height: 760px) and (orientation: portrait) {
+  .hero4__bg img { transform: translateY(-4%); }
 }
 
 /* ---------- площадки: новые логотипы ---------- */
