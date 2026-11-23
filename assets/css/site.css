@@ -384,3 +384,6 @@
   .pf[open] { animation: none; }
   .pf__item, .pf__img img, .dsa:not([hidden]) { transition: none; }
 }
+
+/* значки и логотипы с прозрачным фоном — без серой подложки для загрузки */
+img[src*="assets/logos/"], img[src$=".svg"], img[src*="assets/v5/venues/"] { background-color: transparent; }
