@@ -218,3 +218,13 @@
     setTimeout(function () { maybe('timer'); }, (CFG.exitBonus && CFG.exitBonus.delayMs) || 120000);
   }
 })(window, document);
+
+/* видеоотзывы: стрелки ленты */
+(function (d) {
+  'use strict';
+  var list = d.querySelector('[data-rv-list]'); if (!list) { return; }
+  function step(dir) { var li = list.querySelector('li'); var w = li ? li.getBoundingClientRect().width + 16 : 240; list.scrollBy({ left: dir * w * 2, behavior: 'smooth' }); }
+  var p = d.querySelector('[data-rv-prev]'), n = d.querySelector('[data-rv-next]');
+  if (p) { p.addEventListener('click', function () { step(-1); }); }
+  if (n) { n.addEventListener('click', function () { step(1); }); }
+})(document);

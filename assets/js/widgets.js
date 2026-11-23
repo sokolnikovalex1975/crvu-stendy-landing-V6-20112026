@@ -200,7 +200,7 @@
     }
     function openVideo(id, name, ar, from) {
       opener = from || null;
-      ttl.textContent = name ? 'Видео проекта: ' + name : 'Видео';
+      ttl.textContent = name ? (name.indexOf('Отзыв') === 0 ? name : 'Видео проекта: ' + name) : 'Видео';
       link.href = 'https://vimeo.com/' + id;
       frame.className = 'vdlg__frame' + (ar === 'v' ? ' vdlg__frame--v' : '');
       frame.textContent = '';
