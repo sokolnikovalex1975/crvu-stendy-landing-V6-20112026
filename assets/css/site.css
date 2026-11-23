@@ -394,3 +394,18 @@ img[src*="assets/logos/"], img[src$=".svg"], img[src*="assets/v5/venues/"] { bac
 
 /* над подвалом круглая кнопка «Наверх» не нужна: в подвале есть своя ссылка */
 body.in-footer .totop { opacity: 0; visibility: hidden; transform: translateY(8px); }
+
+/* телефон: в блоке «Заявка» телефон и почта в одну строку, мессенджеры — в шапке и подвале */
+@media (max-width: 599px) {
+  .nq__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem min(1.1rem, 3.2vw); }
+  .nq__links .nq__msg { display: none; }
+  .nq__links .nq__tel { font-size: min(1.0625rem, 4.25vw); }
+  .nq__links .nq__mail { font-size: min(0.9375rem, 3.7vw); }
+  .nq__links .nq__tel, .nq__links .nq__mail { white-space: nowrap; }
+}
+
+/* нижняя строка подвала: политика и «Наверх» на одной линии */
+footer.ftr .ftr__bot { align-items: center; }
+.ftr .ftr__op a { display: inline-flex; align-items: center; min-height: 44px; }
+.ftr .ftr__botl { display: flex; align-items: center; }
+.ftr .ftr__botl > p { display: block; margin: 0; font-size: 0.875rem; }
