@@ -391,3 +391,6 @@
 
 /* значки и логотипы с прозрачным фоном — без серой подложки для загрузки */
 img[src*="assets/logos/"], img[src$=".svg"], img[src*="assets/v5/venues/"] { background-color: transparent; }
+
+/* над подвалом круглая кнопка «Наверх» не нужна: в подвале есть своя ссылка */
+body.in-footer .totop { opacity: 0; visibility: hidden; transform: translateY(8px); }
